@@ -1,0 +1,65 @@
+PODS:
+  - DequeuableRegistrable (0.1.5)
+  - DZNEmptyDataSet (1.8.1)
+  - IQKeyboardManagerSwift (6.2.0)
+  - Kingfisher (4.10.1)
+  - RxAtomic (4.4.0)
+  - RxBlocking (4.4.0):
+    - RxAtomic (~> 4.4)
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxTest (4.4.0):
+    - RxAtomic (~> 4.4)
+    - RxSwift (~> 4.0)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - DequeuableRegistrable (from `https://github.com/fmo91/DequeuableRegistrable/`)
+  - DZNEmptyDataSet
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - RxBlocking (~> 4.0)
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - RxTest (~> 4.0)
+  - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DZNEmptyDataSet
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - RxAtomic
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+    - RxTest
+    - SVProgressHUD
+
+EXTERNAL SOURCES:
+  DequeuableRegistrable:
+    :git: https://github.com/fmo91/DequeuableRegistrable/
+
+CHECKOUT OPTIONS:
+  DequeuableRegistrable:
+    :commit: 268fe3afee567261bdd4f475acd4db54569f79cd
+    :git: https://github.com/fmo91/DequeuableRegistrable/
+
+SPEC CHECKSUMS:
+  DequeuableRegistrable: fba8a5d083a5a87398a7c7aa35813ff7237f1fda
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxBlocking: 138ad53217434444d6eeeb4fb406a45431d92e31
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 151a05d52bf76b036219cf94dec6b70dfd44e714
+
+COCOAPODS: 1.5.3
