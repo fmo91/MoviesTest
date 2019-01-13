@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import RxSwift
+
+struct RemoteMoviesSource: MoviesSource {
+    func searchMovies(text: String) -> Single<[Movie]> {
+        return .just([])
+    }
+    func getMovies(category: Movie.Category) -> Single<[Movie]> {
+        return .just([])
+    }
+}

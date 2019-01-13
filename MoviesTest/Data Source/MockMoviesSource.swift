@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+@testable import MoviesTest
+
+//struct MockMoviesSource: MoviesSource {
+//    func searchMovies(text: String) -> Single<[Movie]> {
+//        return .just([])
+//    }
+//    func getMovies(category: Movie.Category) -> Single<[Movie]> {
+//        return .just([])
+//    }
+//}

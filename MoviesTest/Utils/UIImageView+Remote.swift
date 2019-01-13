@@ -7,3 +7,24 @@
 //
 
 import Foundation
+import Kingfisher
+
+extension UIImageView {
+    func load(_ imagePath: String?, placeholder: UIImage? = UIImage(named: "")) {
+        guard let _imagePath = imagePath, let url = URL(string: _imagePath) else {
+            self.image = placeholder
+            return
+        }
+        kf.setImage(
+            with: url,
+            placeholder: placeholder,
+            options: [.transition(.fade(0.25))],
+            progressBlock: nil,
+            completionHandler: nil
+        )
+    }
+            
+    func cancelDownload() {
+        kf.cancelDownloadTask()
+    }
+}

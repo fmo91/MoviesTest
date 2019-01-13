@@ -4,6 +4,7 @@
 target 'MoviesTest' do
     use_frameworks!
 
+    pod 'BouncyLayout'
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
     pod 'IQKeyboardManagerSwift'

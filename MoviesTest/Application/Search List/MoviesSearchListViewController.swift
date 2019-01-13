@@ -7,24 +7,72 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class MoviesSearchListViewController: UINavigationController {
+final class MoviesSearchListViewController: BaseViewController {
+    
+    // MARK: - Views -
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Attributes -
+    fileprivate var movies = BehaviorRelay<[SearchMovieEntity]>(value: [])
+    
+    let didSelectMovie = PublishSubject<SearchMovieEntity>()
 
+    // MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.setupTableView()
+        
+        movies.asObservable()
+            .subscribe(onNext: { [weak self] (_) in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Setup -
+    private func setupTableView() {
+        MovieSearchResultTableViewCell.register(in: tableView)
+        
+        tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-    */
+    
+}
 
+extension Reactive where Base: MoviesSearchListViewController {
+    var movies: Binder<[SearchMovieEntity]> {
+        return Binder(self.base) { (controller, newMovies) in
+            controller.movies.accept(newMovies)
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource -
+extension MoviesSearchListViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movies.value.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = MovieSearchResultTableViewCell.dequeue(from: tableView)
+        cell.configure(with: movies.value[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return MovieSearchResultTableViewCell.height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectMovie.onNext(movies.value[indexPath.row])
+    }
 }

@@ -7,18 +7,29 @@
 //
 
 import UIKit
+import DequeuableRegistrable
 
-class MovieDetailTopInfoTableViewCell: UITableViewCell {
+final class MovieDetailTopInfoTableViewCell: UITableViewCell, Dequeuable, Registrable {
 
+    // MARK: - Views -
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieSubtitleLabel: UILabel!
+    
+    // MARK: - Life Cycle -
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: - Configuration -
+    func configure(title: String, subtitle: String) {
+        movieTitleLabel.text = title
+        movieSubtitleLabel.text = subtitle
+    }
+    
+    // MARK: - Size -
+    static var height: CGFloat {
+        return UITableView.automaticDimension
     }
     
 }

@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import DequeuableRegistrable
 
-class MovieCollectionViewCell: UICollectionViewCell {
+final class MovieCollectionViewCell: UICollectionViewCell, Dequeuable, Registrable {
+    
+    // MARK: - Views -
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var movieSubtitleLabel: UILabel!
 
+    // MARK: - Life Cycle -
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    // MARK: - Configuration -
+    func configure(with movie: MovieEntity) {
+        movieImageView.load(movie.imagePath)
+        movieTitleLabel.text = movie.title
+        movieSubtitleLabel.text = movie.overview
     }
 
 }

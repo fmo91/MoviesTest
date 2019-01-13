@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct MovieEntity {
+    let movie: Movie
+    
+    let imagePath: String?
+    let title: String
+    let overview: String
+}

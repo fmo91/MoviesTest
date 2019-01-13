@@ -7,18 +7,36 @@
 //
 
 import UIKit
+import DequeuableRegistrable
 
-class MovieSearchResultTableViewCell: UITableViewCell {
+final class MovieSearchResultTableViewCell: UITableViewCell, Dequeuable, Registrable {
+    
+    // MARK: - Views -
+    @IBOutlet private weak var movieTitleLabel: UILabel!
+    @IBOutlet private weak var movieSubtitleLabel: UILabel!
+    @IBOutlet private weak var movieImageView: UIImageView!
 
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        movieImageView.cancelDownload()
+    }
+    
+    // MARK: - Configuration -
+    func configure(with movie: SearchMovieEntity) {
+        movieTitleLabel.text = movie.title
+        movieSubtitleLabel.text = movie.subtitle
+        movieImageView.load(movie.imagePath)
+    }
+    
+    // MARK: - Size -
+    static var height: CGFloat {
+        return 44.0
     }
     
 }

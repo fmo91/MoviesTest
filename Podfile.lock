@@ -1,4 +1,5 @@
 PODS:
+  - BouncyLayout (2.1.0)
   - DequeuableRegistrable (0.1.5)
   - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManagerSwift (6.2.0)
@@ -17,6 +18,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - BouncyLayout
   - DequeuableRegistrable (from `https://github.com/fmo91/DequeuableRegistrable/`)
   - DZNEmptyDataSet
   - IQKeyboardManagerSwift
@@ -29,6 +31,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BouncyLayout
     - DZNEmptyDataSet
     - IQKeyboardManagerSwift
     - Kingfisher
@@ -49,6 +52,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/fmo91/DequeuableRegistrable/
 
 SPEC CHECKSUMS:
+  BouncyLayout: a7955879861375cc4e88bb64d42bcf622cd2694c
   DequeuableRegistrable: fba8a5d083a5a87398a7c7aa35813ff7237f1fda
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
@@ -60,6 +64,6 @@ SPEC CHECKSUMS:
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 151a05d52bf76b036219cf94dec6b70dfd44e714
+PODFILE CHECKSUM: fb1f7a1837204e2e4dc607a93dfaac030a8c6564
 
 COCOAPODS: 1.5.3

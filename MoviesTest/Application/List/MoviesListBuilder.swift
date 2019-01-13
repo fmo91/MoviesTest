@@ -7,3 +7,22 @@
 //
 
 import Foundation
+import UIKit
+
+final class MoviesListBuilder {
+    
+    // MARK: - Attributes -
+    private let category: Movie.Category
+    
+    // MARK: - Init -
+    init(category: Movie.Category) {
+        self.category = category
+    }
+    
+    // MARK: - Build -
+    func build() -> UIViewController {
+        let viewModel = MoviesListViewModel(source: LocalMoviesSource(), category: category)
+        let viewController = MoviesListViewController(viewModel: viewModel)
+        return viewController
+    }
+}

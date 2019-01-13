@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+extension Array {
+    func indexedForEach (_ action: (Element, Int) -> Void) {
+        for (index, element) in self.enumerated() {
+            action(element, index)
+        }
+    }
+}

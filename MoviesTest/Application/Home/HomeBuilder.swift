@@ -6,4 +6,13 @@
 //  Copyright © 2019 Fernando Ortiz. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class HomeBuilder {
+    func build() -> UIViewController {
+        let source = LocalMoviesSource()
+        let viewModel = HomeViewModel(source: source)
+        let viewController = HomeViewController(viewModel: viewModel)
+        return viewController
+    }
+}
