@@ -21,39 +21,45 @@ final public class Movie: Codable {
         }
     }
     
-    let posterPath: String
+    let _posterPath: String?
+    var posterPath: String? {
+        guard let __posterPath = _posterPath else {
+            return nil
+        }
+        return "https://image.tmdb.org/t/p/w500\(__posterPath)"
+    }
     let adult: Bool
     let overview: String
-    let releaseDate: Date
+    let releaseDate: String
     let genreIds: [Int]
-    let id: String
+    let id: Int
     let originalTitle: String
     let originalLanguage: String
     let title: String
-    let backdropPath: String
+    let backdropPath: String?
     let popularity: Double
     let video: Bool
     let voteAverage: Double
     
     init(
-        posterPath: String,
+        posterPath: String?,
         adult: Bool,
         overview: String,
         releaseDate: Date,
         genreIds: [Int],
-        id: String,
+        id: Int,
         originalTitle: String,
         originalLanguage: String,
         title: String,
-        backdropPath: String,
+        backdropPath: String?,
         popularity: Double,
         video: Bool,
         voteAverage: Double
     ) {
-        self.posterPath = posterPath
+        self._posterPath = posterPath
         self.adult = adult
         self.overview = overview
-        self.releaseDate = releaseDate
+        self.releaseDate = ""
         self.genreIds = genreIds
         self.id = id
         self.originalTitle = originalTitle
@@ -66,7 +72,7 @@ final public class Movie: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
+        case _posterPath = "poster_path"
         case adult = "adult"
         case overview = "overview"
         case releaseDate = "release_date"

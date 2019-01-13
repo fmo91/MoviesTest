@@ -1,5 +1,5 @@
 //
-//  SearchMoviesRequest.swift
+//  GetMoviesRequest.swift
 //  MoviesTest
 //
 //  Created by Fernando Ortiz on 13/01/2019.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct SearchMoviesRequest: RequestType {
-    typealias ResponseType = [Movie]
+struct GetMoviesRequest: RequestType {
+    typealias ResponseType = PagedMoviesResponse
     
     let category: Movie.Category
     let page: Int

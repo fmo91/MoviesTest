@@ -21,7 +21,7 @@ final class MoviesListBuilder {
     
     // MARK: - Build -
     func build() -> UIViewController {
-        let viewModel = MoviesListViewModel(source: LocalMoviesSource(), category: category)
+        let viewModel = MoviesListViewModel(source: RemoteMoviesSource(), category: category)
         let viewController = MoviesListViewController(viewModel: viewModel)
         return viewController
     }

@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import RxSwift
+
+extension RequestType {
+    func rx_dispatch() -> Single<ResponseType> {
+        return Single<ResponseType>.create { observer in
+            let task = self.execute(
+                onSuccess: { (response: ResponseType) in
+                    observer(.success(response))
+                },
+                onError: { (error: Error) in
+                    observer(.error(error))
+                }
+            )
+            
+            return Disposables.create {
+                task?.cancel()
+            }
+        }
+    }
+}

@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MoviesTest" customModuleProvider="target">
             <connections>
                 <outlet property="categoriesSegmentedControl" destination="hJc-0z-vdR" id="TDb-kp-HPc"/>
+                <outlet property="containerScrollView" destination="i8e-6Y-DLl" id="3FF-7H-zvj"/>
                 <outlet property="mainContainer" destination="P0i-NH-JC1" id="9Js-hW-iwE"/>
                 <outlet property="popularMoviesContainer" destination="Ap6-7J-zRB" id="dBv-6p-1Nm"/>
                 <outlet property="searchResultsContainer" destination="s0K-q0-KiX" id="g21-sS-p28"/>

@@ -11,6 +11,7 @@ import UIKit
 final class HomeViewController: BaseViewController {
     
     // MARK: - Views -
+    @IBOutlet weak var containerScrollView: UIScrollView!
     @IBOutlet weak var mainContainer: UIView!
     @IBOutlet weak var searchResultsContainer: UIView!
     @IBOutlet weak var categoriesSegmentedControl: BottomLinedSegmentedControl!
@@ -64,6 +65,24 @@ final class HomeViewController: BaseViewController {
             .drive (onNext: { [unowned self] emptyResults in
                 self.searchResultsContainer.isHidden = emptyResults
                 self.mainContainer.isHidden = !emptyResults
+            })
+            .disposed(by: disposeBag)
+        
+        containerScrollView.rx.contentOffset
+            .map { $0.x }
+            .map { (offset) -> Int in
+                return Int((offset / self.containerScrollView.frame.width).rounded())
+            }
+            .subscribe(onNext: { [unowned self] (index: Int) in
+                self.categoriesSegmentedControl.setSelectedItem(index)
+            })
+            .disposed(by: disposeBag)
+        
+        categoriesSegmentedControl.itemSelected
+            .map { [unowned self] in CGFloat($0) * self.view.frame.width }
+            .map { CGPoint(x: $0, y: 0) }
+            .subscribe(onNext: { [unowned self] (newContentOffset: CGPoint) in
+                self.containerScrollView.setContentOffset(newContentOffset, animated: true)
             })
             .disposed(by: disposeBag)
     }

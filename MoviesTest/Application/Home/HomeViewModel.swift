@@ -35,9 +35,9 @@ private extension Array where Element == Movie {
         return self.map {
             return SearchMovieEntity(
                 movie       : $0,
-                imagePath   : $0.posterPath,
+                imagePath   : $0.posterPath ?? "",
                 title       : $0.title,
-                subtitle    : "TODO: DESCRIPTION"
+                subtitle    : $0.overview
             )
         }
     }

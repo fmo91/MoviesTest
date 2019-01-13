@@ -28,6 +28,10 @@ final class MoviesListViewModel {
         
         didViewFinishLoading.asObserver()
             .flatMap { [unowned self] in self.source.getMovies(category: category) }
+            .catchError({ (error) -> Observable<[Movie]> in
+                
+                return .just([])
+            })
             .bind(to: rawMovies)
             .disposed(by: disposeBag)
         

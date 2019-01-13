@@ -23,6 +23,12 @@ final class MoviesListViewController: BaseViewController {
         self.setupCollectionView()
         
         viewModel.didViewFinishLoading.onNext(())
+        
+        viewModel.movies.asDriver()
+            .drive(onNext: { [unowned self] (_) in
+                self.collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {

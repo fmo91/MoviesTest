@@ -17,7 +17,7 @@ struct LocalMoviesSource: MoviesSource {
             overview: "A really good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that good movie about a group of kids that ",
             releaseDate: Date(),
             genreIds: [],
-            id: "123123",
+            id: 123123,
             originalTitle: "Stranger Things",
             originalLanguage: "en",
             title: "Stranger Things",

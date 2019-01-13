@@ -11,9 +11,15 @@ import RxSwift
 
 struct RemoteMoviesSource: MoviesSource {
     func searchMovies(text: String) -> Single<[Movie]> {
-        return .just([])
+        if text.isEmpty {
+            return .just([])
+        }
+        
+        return SearchMoviesRequest(keyword: text).rx_dispatch()
+            .map { $0.results }
     }
     func getMovies(category: Movie.Category) -> Single<[Movie]> {
-        return .just([])
+        return GetMoviesRequest(category: category).rx_dispatch()
+            .map { $0.results }
     }
 }

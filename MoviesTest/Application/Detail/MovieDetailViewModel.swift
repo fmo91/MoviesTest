@@ -15,7 +15,7 @@ final class MovieDetailViewModel {
     private let movie: Movie
     
     var movieImagePath: String {
-        return movie.posterPath
+        return movie.posterPath ?? ""
     }
     
     var movieTitle: String {

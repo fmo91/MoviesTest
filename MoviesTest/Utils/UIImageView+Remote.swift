@@ -10,7 +10,7 @@ import Foundation
 import Kingfisher
 
 extension UIImageView {
-    func load(_ imagePath: String?, placeholder: UIImage? = UIImage(named: "")) {
+    func load(_ imagePath: String?, placeholder: UIImage? = UIImage(named: "placeholder")) {
         guard let _imagePath = imagePath, let url = URL(string: _imagePath) else {
             self.image = placeholder
             return

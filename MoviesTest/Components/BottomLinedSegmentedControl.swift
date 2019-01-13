@@ -32,6 +32,7 @@ final class BottomLinedSegmentedControl: UIView {
     private var itemContainers: [ItemContainer] = []
     
     // MARK: - Attributes -
+    private let disposeBag = DisposeBag()
     let itemSelected = PublishSubject<Index>()
     var items: [String] = [] {
         didSet {
@@ -44,7 +45,9 @@ final class BottomLinedSegmentedControl: UIView {
                 .indexedForEach { (item, index) in
                     item.tag = index
                     item.addTarget(self, action: #selector(itemContainerSelected(_:)), for: .touchUpInside)
+                    item.isItemSelected = index == 0
                     contentView.addArrangedSubview(item)
+                    itemContainers.append(item)
                 }
         }
     }
@@ -75,12 +78,16 @@ final class BottomLinedSegmentedControl: UIView {
     }
     
     // MARK: - Utils -
+    func setSelectedItem(_ index: Int) {
+        self.itemContainers
+            .indexedForEach { (item, _index) in
+                item.isItemSelected = _index == index
+            }
+    }
     
     // MARK: - Actions -
-    @objc private func itemContainerSelected(_ recognizer: UITapGestureRecognizer) {
-        guard let index = recognizer.view?.tag else {
-            return
-        }
+    @objc private func itemContainerSelected(_ button: UIButton) {
+        let index = button.tag
         itemSelected.onNext(index)
         for (containerIndex, container) in itemContainers.enumerated() {
             container.isItemSelected = containerIndex == index
@@ -110,7 +117,7 @@ extension BottomLinedSegmentedControl {
                     ? ItemContainer.selectedFont
                     : ItemContainer.unselectedFont
                 
-                label.backgroundColor = isItemSelected
+                label.textColor = isItemSelected
                     ? UIColor.custom.black
                     : UIColor.custom.darkGray
             }
