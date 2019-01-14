@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol MoviesSource {
-    func searchMovies(text: String) -> Single<[Movie]>
-    func getMovies(category: Movie.Category) -> Single<[Movie]>
+    func searchMovies(text: String) -> Observable<[Movie]>
+    func getMovies(category: Movie.Category) -> Observable<[Movie]>
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-final public class Movie: Codable {
+final public class Movie: NSManagedObject, Decodable {
     public enum Category: CaseIterable {
         case popular, topRated, upcoming
         
@@ -21,58 +22,54 @@ final public class Movie: Codable {
         }
     }
     
-    let _posterPath: String?
+    @NSManaged var aPosterPath: String?
     var posterPath: String? {
-        guard let __posterPath = _posterPath else {
+        guard let _posterPath = aPosterPath else {
             return nil
         }
-        return "https://image.tmdb.org/t/p/w500\(__posterPath)"
+        return "https://image.tmdb.org/t/p/w500\(_posterPath)"
     }
-    let adult: Bool
-    let overview: String
-    let releaseDate: String
-    let genreIds: [Int]
-    let id: Int
-    let originalTitle: String
-    let originalLanguage: String
-    let title: String
-    let backdropPath: String?
-    let popularity: Double
-    let video: Bool
-    let voteAverage: Double
+    @NSManaged var adult: Bool
+    @NSManaged var overview: String
+    @NSManaged var releaseDate: String
+    @NSManaged var genreIds: NSArray
+    @NSManaged var id: Int32
+    @NSManaged var originalTitle: String
+    @NSManaged var originalLanguage: String
+    @NSManaged var title: String
+    @NSManaged var backdropPath: String?
+    @NSManaged var popularity: Double
+    @NSManaged var video: Bool
+    @NSManaged var voteAverage: Double
     
-    init(
-        posterPath: String?,
-        adult: Bool,
-        overview: String,
-        releaseDate: Date,
-        genreIds: [Int],
-        id: Int,
-        originalTitle: String,
-        originalLanguage: String,
-        title: String,
-        backdropPath: String?,
-        popularity: Double,
-        video: Bool,
-        voteAverage: Double
-    ) {
-        self._posterPath = posterPath
-        self.adult = adult
-        self.overview = overview
-        self.releaseDate = ""
-        self.genreIds = genreIds
-        self.id = id
-        self.originalTitle = originalTitle
-        self.originalLanguage = originalLanguage
-        self.title = title
-        self.backdropPath = backdropPath
-        self.popularity = popularity
-        self.video = video
-        self.voteAverage = voteAverage
+    required convenience public init(from decoder: Decoder) throws {
+        guard
+            let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context)
+        else {
+            fatalError()
+        }
+        
+        self.init(entity: entity, insertInto: nil)
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        aPosterPath = try values.decode(String.self, forKey: .aPosterPath)
+        adult = try values.decode(Bool.self, forKey: .adult)
+        overview = try values.decode(String.self, forKey: .overview)
+        releaseDate = try values.decode(String.self, forKey: .releaseDate)
+//        genreIds
+//        id = Int32(try values.decode(Int.self, forKey: .id))
+        originalTitle = try values.decode(String.self, forKey: .originalTitle)
+        originalLanguage = try values.decode(String.self, forKey: .originalLanguage)
+        title = try values.decode(String.self, forKey: .title)
+        backdropPath = try values.decode(String.self, forKey: .backdropPath)
+//        popularity = try values.decode(Double.self, forKey: .popularity)
+        video = try values.decode(Bool.self, forKey: .video)
+//        voteAverage = try values.decode(Double.self, forKey: .voteAverage)
     }
     
     enum CodingKeys: String, CodingKey {
-        case _posterPath = "poster_path"
+        case aPosterPath = "poster_path"
         case adult = "adult"
         case overview = "overview"
         case releaseDate = "release_date"
@@ -85,5 +82,24 @@ final public class Movie: Codable {
         case popularity = "popularity"
         case video = "video"
         case voteAverage = "vote_average"
+    }
+}
+
+extension Movie: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(aPosterPath, forKey: .aPosterPath)
+        try container.encode(adult, forKey: .adult)
+        try container.encode(overview, forKey: .overview)
+        try container.encode(releaseDate, forKey: .releaseDate)
+//        try container.encode(genreIds, forKey: .genreIds)
+        try container.encode(id, forKey: .id)
+        try container.encode(originalTitle, forKey: .originalTitle)
+        try container.encode(originalLanguage, forKey: .originalLanguage)
+        try container.encode(title, forKey: .title)
+        try container.encode(backdropPath, forKey: .backdropPath)
+        try container.encode(popularity, forKey: .popularity)
+        try container.encode(video, forKey: .video)
+        try container.encode(voteAverage, forKey: .voteAverage)
     }
 }

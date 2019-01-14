@@ -57,6 +57,7 @@
 		EDF634EF21EBEA2200295D4C /* Conn+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF634EE21EBEA2200295D4C /* Conn+RxSwift.swift */; };
 		EDF634F121EBEE3400295D4C /* PagedMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF634F021EBEE3400295D4C /* PagedMoviesResponse.swift */; };
 		EDF634F321EBF43800295D4C /* SearchMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF634F221EBF43800295D4C /* SearchMoviesRequest.swift */; };
+		EDF634F521EC35E400295D4C /* CacheableMoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF634F421EC35E400295D4C /* CacheableMoviesSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		EDF634EE21EBEA2200295D4C /* Conn+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Conn+RxSwift.swift"; sourceTree = "<group>"; };
 		EDF634F021EBEE3400295D4C /* PagedMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedMoviesResponse.swift; sourceTree = "<group>"; };
 		EDF634F221EBF43800295D4C /* SearchMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesRequest.swift; sourceTree = "<group>"; };
+		EDF634F421EC35E400295D4C /* CacheableMoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheableMoviesSource.swift; sourceTree = "<group>"; };
 		F3688D5C6FC7EDA71E8DACAD /* Pods-MoviesTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesTest/Pods-MoviesTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +202,7 @@
 				EDF6348C21E961F100295D4C /* Utils */,
 				EDF6348921E961D600295D4C /* Application */,
 				ED3B97C521E92BCA0043F788 /* AppDelegate.swift */,
+				ED3B97CC21E92BCA0043F788 /* MoviesTest.xcdatamodeld */,
 				ED3B97D421E92BCC0043F788 /* Info.plist */,
 			);
 			path = MoviesTest;
@@ -234,6 +237,7 @@
 				EDF6349821EA970C00295D4C /* LocalMoviesSource.swift */,
 				EDF6349A21EA973900295D4C /* RemoteMoviesSource.swift */,
 				EDF6349C21EA976000295D4C /* MockMoviesSource.swift */,
+				EDF634F421EC35E400295D4C /* CacheableMoviesSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -307,7 +311,6 @@
 		EDF6349F21EA97D000295D4C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ED3B97CC21E92BCA0043F788 /* MoviesTest.xcdatamodeld */,
 				ED3B97CF21E92BCC0043F788 /* Assets.xcassets */,
 				EDF634D221EB5DE200295D4C /* Colors.xcassets */,
 				ED3B97D121E92BCC0043F788 /* LaunchScreen.storyboard */,
@@ -642,6 +645,7 @@
 				EDF634DD21EB6D5D00295D4C /* Array+Convenience.swift in Sources */,
 				EDF6349521E99BD100295D4C /* Movie.swift in Sources */,
 				EDF634A621EA988F00295D4C /* MovieDetailViewController.swift in Sources */,
+				EDF634F521EC35E400295D4C /* CacheableMoviesSource.swift in Sources */,
 				EDF634E121EBCA4C00295D4C /* ReusableViewEnum.swift in Sources */,
 				EDF634C821EAA8DF00295D4C /* MoviesSearchListViewController.swift in Sources */,
 				EDF634BC21EA9F2000295D4C /* HomeViewModel.swift in Sources */,

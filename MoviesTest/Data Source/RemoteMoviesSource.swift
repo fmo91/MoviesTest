@@ -10,16 +10,18 @@ import Foundation
 import RxSwift
 
 struct RemoteMoviesSource: MoviesSource {
-    func searchMovies(text: String) -> Single<[Movie]> {
+    func searchMovies(text: String) -> Observable<[Movie]> {
         if text.isEmpty {
             return .just([])
         }
         
         return SearchMoviesRequest(keyword: text).rx_dispatch()
+            .asObservable()
             .map { $0.results }
     }
-    func getMovies(category: Movie.Category) -> Single<[Movie]> {
+    func getMovies(category: Movie.Category) -> Observable<[Movie]> {
         return GetMoviesRequest(category: category).rx_dispatch()
+            .asObservable()
             .map { $0.results }
     }
 }
