@@ -17,6 +17,9 @@ final class HomeViewModel {
     let searchText = PublishSubject<String>()
     
     let searchResult: Driver<[SearchMovieEntity]>
+    let popularMovies: Driver<[Movie]>
+    let topRatedMovies: Driver<[Movie]>
+    let upcomingMovies: Driver<[Movie]>
     
     // MARK: - Init -
     init(source: MoviesSource) {
@@ -26,6 +29,16 @@ final class HomeViewModel {
             .flatMap { text in source.searchMovies(text: text) }
             .map { movies in movies.toSearchMovieEntities }
             .asDriver(onErrorJustReturn: [])
+        
+        popularMovies = source.getMovies(category: .popular)
+            .asDriver(onErrorJustReturn: [])
+        
+        topRatedMovies = source.getMovies(category: .topRated)
+            .asDriver(onErrorJustReturn: [])
+        
+        upcomingMovies = source.getMovies(category: .upcoming)
+            .asDriver(onErrorJustReturn: [])
+        
     }
     
 }

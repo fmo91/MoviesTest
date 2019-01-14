@@ -8,20 +8,22 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class MoviesListBuilder {
     
     // MARK: - Attributes -
-    private let category: Movie.Category
+    private let moviesSource: Driver<[Movie]>
     
     // MARK: - Init -
-    init(category: Movie.Category) {
-        self.category = category
+    init(moviesSource: Driver<[Movie]>) {
+        self.moviesSource = moviesSource
     }
     
     // MARK: - Build -
     func build() -> UIViewController {
-        let viewModel = MoviesListViewModel(source: CacheableMoviesSource(), category: category)
+        let viewModel = MoviesListViewModel(moviesSource: moviesSource)
         let viewController = MoviesListViewController(viewModel: viewModel)
         return viewController
     }

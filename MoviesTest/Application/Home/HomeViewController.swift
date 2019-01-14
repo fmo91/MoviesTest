@@ -117,9 +117,9 @@ final class HomeViewController: BaseViewController {
     }
     
     private func addCategoriesControllers() {
-        let _popularMoviesViewController = MoviesListBuilder(category: .popular).build()
-        let _topRatedMoviesViewController = MoviesListBuilder(category: .topRated).build()
-        let _upcomingMoviesViewController = MoviesListBuilder(category: .upcoming).build()
+        let _popularMoviesViewController = MoviesListBuilder(moviesSource: viewModel.popularMovies).build()
+        let _topRatedMoviesViewController = MoviesListBuilder(moviesSource: viewModel.topRatedMovies).build()
+        let _upcomingMoviesViewController = MoviesListBuilder(moviesSource: viewModel.upcomingMovies).build()
         
         _popularMoviesViewController.embed(in: self, onView: popularMoviesContainer)
         _topRatedMoviesViewController.embed(in: self, onView: topRatedMoviesContainer)
