@@ -2,9 +2,9 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CategorySearch" representedClassName="CategorySearch" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="movies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" syncable="YES"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LocalMovie" syncable="YES"/>
     </entity>
-    <entity name="Movie" representedClassName="Movie" syncable="YES">
+    <entity name="LocalMovie" representedClassName="LocalMovie" syncable="YES" codeGenerationType="class">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="aPosterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="backdropPath" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,11 +21,11 @@
     </entity>
     <entity name="TextSearch" representedClassName="TextSearch" syncable="YES" codeGenerationType="class">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="movies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" syncable="YES"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LocalMovie" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="TextSearch" positionX="-54" positionY="90" width="128" height="75"/>
         <element name="CategorySearch" positionX="-36" positionY="99" width="128" height="75"/>
+        <element name="LocalMovie" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="TextSearch" positionX="-54" positionY="90" width="128" height="75"/>
     </elements>
 </model>
