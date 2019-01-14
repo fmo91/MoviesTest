@@ -14,6 +14,7 @@
 		ED3B97D021E92BCC0043F788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3B97CF21E92BCC0043F788 /* Assets.xcassets */; };
 		ED3B97D321E92BCC0043F788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED3B97D121E92BCC0043F788 /* LaunchScreen.storyboard */; };
 		ED3B97DE21E92BCD0043F788 /* MoviesTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3B97DD21E92BCD0043F788 /* MoviesTestTests.swift */; };
+		ED94894221ECBA8100DEA5BF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94894121ECBA8100DEA5BF /* Reachability.swift */; };
 		EDF6349121E9627700295D4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349021E9627700295D4C /* BaseViewController.swift */; };
 		EDF6349521E99BD100295D4C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349421E99BD100295D4C /* Movie.swift */; };
 		EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349621EA96C400295D4C /* MoviesSource.swift */; };
@@ -85,6 +86,7 @@
 		ED3B97D921E92BCD0043F788 /* MoviesTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3B97DD21E92BCD0043F788 /* MoviesTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTestTests.swift; sourceTree = "<group>"; };
 		ED3B97DF21E92BCD0043F788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED94894121ECBA8100DEA5BF /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		EDF6349021E9627700295D4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EDF6349421E99BD100295D4C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		EDF6349621EA96C400295D4C /* MoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSource.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				EDF634E021EBCA4C00295D4C /* ReusableViewEnum.swift */,
 				EDF634E721EBE7FA00295D4C /* Conn.swift */,
 				EDF634EE21EBEA2200295D4C /* Conn+RxSwift.swift */,
+				ED94894121ECBA8100DEA5BF /* Reachability.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 			files = (
 				EDF634DF21EBB2B000295D4C /* UIView+Convenience.swift in Sources */,
 				EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */,
+				ED94894221ECBA8100DEA5BF /* Reachability.swift in Sources */,
 				ED3B97CE21E92BCA0043F788 /* MoviesTest.xcdatamodeld in Sources */,
 				EDF6349121E9627700295D4C /* BaseViewController.swift in Sources */,
 				EDF634CB21EAAB3F00295D4C /* SearchMovieEntity.swift in Sources */,

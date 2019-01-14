@@ -14,22 +14,24 @@ struct CacheableMoviesSource: MoviesSource {
     private let remoteSource = RemoteMoviesSource()
     
     func searchMovies(text: String) -> Observable<[Movie]> {
-        return localSource.searchMovies(text: text)
-            .concat(
-                remoteSource.searchMovies(text: text)
-                    .do(onNext: { (movies: [Movie]) in
-                        self.localSource.saveMovies(movies, forSearch: text)
-                    })
-            )
+        if InternetConnection.isWorking {
+            return remoteSource.searchMovies(text: text)
+                .do(onNext: { (movies: [Movie]) in
+                    self.localSource.saveMovies(movies, forSearch: text)
+                })
+        } else {
+            return localSource.searchMovies(text: text)
+        }
     }
     
     func getMovies(category: Movie.Category) -> Observable<[Movie]> {
-        return localSource.getMovies(category: category)
-            .concat(
-                remoteSource.getMovies(category: category)
-                    .do(onNext: { (movies: [Movie]) in
-                        self.localSource.saveMovies(movies, forCategory: category)
-                    })
-            )
+        if InternetConnection.isWorking {
+            return remoteSource.getMovies(category: category)
+                .do(onNext: { (movies: [Movie]) in
+                    self.localSource.saveMovies(movies, forCategory: category)
+                })
+        } else {
+            return localSource.getMovies(category: category)
+        }
     }
 }
