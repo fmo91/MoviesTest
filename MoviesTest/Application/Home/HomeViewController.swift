@@ -78,6 +78,12 @@ final class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        containerScrollView.rx.contentOffset
+            .map { $0.x }
+            .map { offset in offset / self.containerScrollView.frame.width }
+            .bind(to: categoriesSegmentedControl.rx.progress)
+            .disposed(by: disposeBag)
+        
         categoriesSegmentedControl.itemSelected
             .map { [unowned self] in CGFloat($0) * self.view.frame.width }
             .map { CGPoint(x: $0, y: 0) }

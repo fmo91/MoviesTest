@@ -25,11 +25,13 @@ final class BottomLinedSegmentedControl: UIView {
         let view = UIStackView()
         view.axis = .horizontal
         view.distribution = .fillEqually
-        view.spacing = 5.0
         return view
     }()
     
-    private var itemContainers: [ItemContainer] = []
+    fileprivate var bottomIndicatorLeadingConstraint: NSLayoutConstraint?
+    private var bottomIndicatorWidthConstraint: NSLayoutConstraint?
+    
+    fileprivate var itemContainers: [ItemContainer] = []
     
     // MARK: - Attributes -
     private let disposeBag = DisposeBag()
@@ -48,6 +50,12 @@ final class BottomLinedSegmentedControl: UIView {
                     item.isItemSelected = index == 0
                     contentView.addArrangedSubview(item)
                     itemContainers.append(item)
+                    if index == 0 {
+                        self.bottomIndicatorWidthConstraint?.isActive = false
+                        self.bottomIndicatorWidthConstraint = nil
+                        self.bottomIndicatorWidthConstraint = self.bottomIndicator.widthAnchor.constraint(equalTo: item.widthAnchor)
+                        self.bottomIndicatorWidthConstraint?.isActive = true
+                    }
                 }
         }
     }
@@ -75,6 +83,9 @@ final class BottomLinedSegmentedControl: UIView {
             bottomIndicator.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             bottomIndicator.heightAnchor.constraint(equalToConstant: 2.0),
         ].forEach { $0.isActive = true }
+        
+        bottomIndicatorLeadingConstraint = bottomIndicator.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        bottomIndicatorLeadingConstraint?.isActive = true
     }
     
     // MARK: - Utils -
@@ -137,6 +148,16 @@ extension BottomLinedSegmentedControl {
         
         private func commonInit() {
             label.addMatchingSize(inside: self)
+        }
+    }
+}
+
+extension Reactive where Base: BottomLinedSegmentedControl {
+    var progress: Binder<CGFloat> {
+        return Binder(self.base) { (segmentedControl: BottomLinedSegmentedControl, progressValue: CGFloat) in
+            print("P V => \(progressValue)")
+            segmentedControl.bottomIndicatorLeadingConstraint?.constant = (segmentedControl.itemContainers.first?.frame.width ?? 0.0) * progressValue
+            segmentedControl.layoutIfNeeded()
         }
     }
 }

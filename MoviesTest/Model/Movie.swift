@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 final public class Movie: Codable {
-    public enum Category: CaseIterable {
+    public enum Category: String, CaseIterable {
         case popular, topRated, upcoming
         
         var displayableName: String {
@@ -109,21 +109,24 @@ extension Movie {
         
         return movie
     }
-    func toLocalMovie() -> LocalMovie {
-        let localMovie = LocalMovie(context: context)
-        localMovie.aPosterPath = posterPath
-        localMovie.adult = adult
-        localMovie.overview = overview
-        localMovie.releaseDate = releaseDate
-        localMovie.genreIds = NSArray(array: genreIds.map { NSNumber(integerLiteral: $0) })
-        localMovie.id = Int32(id)
-        localMovie.originalTitle = originalTitle
-        localMovie.originalLanguage = originalLanguage
-        localMovie.title = title
-        localMovie.backdropPath = backdropPath
-        localMovie.popularity = popularity
-        localMovie.video = video
-        localMovie.voteAverage = voteAverage
-        return localMovie
+    
+    @discardableResult
+    func toLocalMovie(in context: NSManagedObjectContext) -> LocalMovie {
+        let entity = NSEntityDescription.entity(forEntityName: "LocalMovie", in: context)
+        let localMovie = NSManagedObject(entity: entity!, insertInto: context)
+        localMovie.setValue(aPosterPath, forKey: "aPosterPath")
+        localMovie.setValue(adult, forKey: "adult")
+        localMovie.setValue(overview, forKey: "overview")
+        localMovie.setValue(releaseDate, forKey: "releaseDate")
+        localMovie.setValue(NSArray(array: genreIds.map { NSNumber(integerLiteral: $0) }), forKey: "genreIds")
+        localMovie.setValue(Int32(id), forKey: "id")
+        localMovie.setValue(originalTitle, forKey: "originalTitle")
+        localMovie.setValue(originalLanguage, forKey: "originalLanguage")
+        localMovie.setValue(title, forKey: "title")
+        localMovie.setValue(backdropPath, forKey: "backdropPath")
+        localMovie.setValue(popularity, forKey: "popularity")
+        localMovie.setValue(video, forKey: "video")
+        localMovie.setValue(voteAverage, forKey: "voteAverage")
+        return localMovie as! LocalMovie
     }
 }
