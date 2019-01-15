@@ -15,9 +15,12 @@ struct SearchMoviesRequest: RequestType {
     
     var data: RequestData {
         return RequestData(
-            path: "\(RequestConstants.baseURL)/search/movie?api_key=\(RequestConstants.apiKey)&query=\(keyword.replacingOccurrences(of: " ", with: "+"))",
+            path: "\(RequestConstants.baseURL)/search/movie",
             method: .get,
-            params: nil,
+            params: [
+                "api_key": RequestConstants.apiKey,
+                "query": keyword.replacingOccurrences(of: " ", with: "+")
+            ],
             headers: nil
         )
     }
