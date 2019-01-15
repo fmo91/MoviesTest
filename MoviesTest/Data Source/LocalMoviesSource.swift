@@ -53,16 +53,19 @@ struct LocalMoviesSource: MoviesSource {
         let fetch = NSFetchRequest<CategorySearch>(entityName: "CategorySearch")
         fetch.predicate = NSPredicate(format: "category = %@", category.rawValue)
         let searchesThatMatch = try? context.fetch(fetch)
-        if let results = searchesThatMatch, results.isEmpty {
-            let localMovies = movies.map { $0.saveIfNotExistInDatabase(for: context) }
-            let entity = NSEntityDescription.entity(forEntityName: "CategorySearch", in: context)
-            let search = NSManagedObject(entity: entity!, insertInto: context) as! CategorySearch
-            search.setValue(category.rawValue, forKey: "category")
-            localMovies.forEach { (localMovie) in
-                search.addToMovies(localMovie)
+        if let results = searchesThatMatch {
+            for result in results {
+                context.delete(result)
             }
-            context.saveIfHasChanged()
         }
+        let localMovies = movies.map { $0.saveIfNotExistInDatabase(for: context) }
+        let entity = NSEntityDescription.entity(forEntityName: "CategorySearch", in: context)
+        let search = NSManagedObject(entity: entity!, insertInto: context) as! CategorySearch
+        search.setValue(category.rawValue, forKey: "category")
+        localMovies.forEach { (localMovie) in
+            search.addToMovies(localMovie)
+        }
+        context.saveIfHasChanged()
     }
 }
 

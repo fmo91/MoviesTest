@@ -16,6 +16,7 @@ PODS:
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SVProgressHUD (2.2.5)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - BouncyLayout
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - RxSwift (~> 4.0)
   - RxTest (~> 4.0)
   - SVProgressHUD
+  - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -41,6 +43,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SVProgressHUD
+    - youtube-ios-player-helper
 
 EXTERNAL SOURCES:
   DequeuableRegistrable:
@@ -63,7 +66,8 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: fb1f7a1837204e2e4dc607a93dfaac030a8c6564
+PODFILE CHECKSUM: cbd39a5f13f330d08342f94d24bcdcfdcf171daa
 
 COCOAPODS: 1.5.3

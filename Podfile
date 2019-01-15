@@ -12,6 +12,7 @@ target 'MoviesTest' do
     pod 'SVProgressHUD'
     pod 'DZNEmptyDataSet'
     pod 'DequeuableRegistrable', :git => 'https://github.com/fmo91/DequeuableRegistrable/'
+    pod 'youtube-ios-player-helper', '~> 0.1.4'
 
     target 'MoviesTestTests' do
         inherit! :search_paths
