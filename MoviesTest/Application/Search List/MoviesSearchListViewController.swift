@@ -16,7 +16,7 @@ final class MoviesSearchListViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Attributes -
-    fileprivate var movies = BehaviorRelay<[SearchMovieEntity]>(value: [])
+    var movies = BehaviorRelay<[SearchMovieEntity]>(value: [])
     
     let didSelectMovie = PublishSubject<SearchMovieEntity>()
 

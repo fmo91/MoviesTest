@@ -19,8 +19,8 @@ struct RemoteMoviesSource: MoviesSource {
             .asObservable()
             .map { $0.results }
     }
-    func getMovies(category: Movie.Category) -> Observable<[Movie]> {
-        return GetMoviesRequest(category: category).rx_dispatch()
+    func getMovies(category: Movie.Category, page: Int?) -> Observable<[Movie]> {
+        return GetMoviesRequest(category: category, page: page).rx_dispatch()
             .asObservable()
             .map { $0.results }
     }

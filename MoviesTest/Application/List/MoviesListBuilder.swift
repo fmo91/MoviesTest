@@ -22,7 +22,7 @@ final class MoviesListBuilder {
     }
     
     // MARK: - Build -
-    func build() -> UIViewController {
+    func build() -> MoviesListViewController {
         let viewModel = MoviesListViewModel(moviesSource: moviesSource)
         let viewController = MoviesListViewController(viewModel: viewModel)
         return viewController

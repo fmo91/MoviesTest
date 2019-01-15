@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class MoviesListViewController: BaseViewController {
     
@@ -15,6 +17,8 @@ final class MoviesListViewController: BaseViewController {
     
     // MARK: - Attributes -
     private let viewModel: MoviesListViewModel
+    
+    let didReachedEnd = PublishSubject<Void>()
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -84,6 +88,12 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = MovieDetailBuilder(movie: viewModel.movies.value[indexPath.row].movie).build()
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.movies.value.count - 1 {
+            didReachedEnd.onNext(())
+        }
     }
 }
 

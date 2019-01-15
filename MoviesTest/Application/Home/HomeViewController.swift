@@ -20,16 +20,16 @@ final class HomeViewController: BaseViewController {
     @IBOutlet weak var topRatedMoviesContainer: UIView!
     @IBOutlet weak var upcomingMoviesContainer: UIView!
     
-    private let searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController(searchResultsController: nil)
     
-    private weak var searchListViewController: MoviesSearchListViewController!
+    weak var searchListViewController: MoviesSearchListViewController!
     
-    private weak var popularMoviesViewController: UIViewController!
-    private weak var topRatedMoviesViewController: UIViewController!
-    private weak var upcomingMoviesViewController: UIViewController!
+    weak var popularMoviesViewController: UIViewController!
+    weak var topRatedMoviesViewController: UIViewController!
+    weak var upcomingMoviesViewController: UIViewController!
     
     // MARK: - Attributes -
-    private let viewModel: HomeViewModel
+    private let viewModel: HomeViewModelType
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -99,7 +99,7 @@ final class HomeViewController: BaseViewController {
     }
     
     // MARK: - Init -
-    init(viewModel: HomeViewModel) {
+    init(viewModel: HomeViewModelType) {
         self.viewModel = viewModel
         super.init()
     }
@@ -130,6 +130,21 @@ final class HomeViewController: BaseViewController {
         _popularMoviesViewController.embed(in: self, onView: popularMoviesContainer)
         _topRatedMoviesViewController.embed(in: self, onView: topRatedMoviesContainer)
         _upcomingMoviesViewController.embed(in: self, onView: upcomingMoviesContainer)
+        
+        _popularMoviesViewController.didReachedEnd.asObservable()
+            .map { Movie.Category.popular }
+            .bind(to: viewModel.didReachedEndForCategory)
+            .disposed(by: disposeBag)
+        
+        _topRatedMoviesViewController.didReachedEnd.asObservable()
+            .map { Movie.Category.topRated }
+            .bind(to: viewModel.didReachedEndForCategory)
+            .disposed(by: disposeBag)
+        
+        _upcomingMoviesViewController.didReachedEnd.asObservable()
+            .map { Movie.Category.upcoming }
+            .bind(to: viewModel.didReachedEndForCategory)
+            .disposed(by: disposeBag)
         
         popularMoviesViewController = _popularMoviesViewController
         topRatedMoviesViewController = _topRatedMoviesViewController

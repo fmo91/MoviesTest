@@ -23,9 +23,9 @@ struct GetMoviesRequest: RequestType {
         )
     }
     
-    init (category: Movie.Category, page: Int = 1) {
+    init (category: Movie.Category, page: Int? = 1) {
         self.category = category
-        self.page = page
+        self.page = page ?? 1
     }
 }
 

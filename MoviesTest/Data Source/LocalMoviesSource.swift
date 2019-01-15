@@ -22,7 +22,7 @@ struct LocalMoviesSource: MoviesSource {
         }
     }
     
-    func getMovies(category: Movie.Category) -> Observable<[Movie]> {
+    func getMovies(category: Movie.Category, page: Int?) -> Observable<[Movie]> {
         let fetch = NSFetchRequest<CategorySearch>(entityName: "CategorySearch")
         fetch.predicate = NSPredicate(format: "category = %@", category.rawValue)
         let searchesThatMatch = try? context.fetch(fetch)
