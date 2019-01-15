@@ -11,8 +11,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Pacifico-Regular.ttf">
-            <string>Pacifico-Regular</string>
+        <array key="OpenSans-ExtraBold.ttf">
+            <string>OpenSans-ExtraBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -25,15 +25,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_ic" translatesAutoresizingMaskIntoConstraints="NO" id="QQl-MS-oWB">
-                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="133.5" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="9Y0-rB-b9i"/>
                                     <constraint firstAttribute="width" secondItem="QQl-MS-oWB" secondAttribute="height" multiplier="1:1" id="Xd3-Dp-HTP"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzA-9C-RWa">
-                                <rect key="frame" x="20" y="453.5" width="335" height="61.5"/>
-                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzA-9C-RWa">
+                                <rect key="frame" x="20" y="353.5" width="335" height="41"/>
+                                <fontDescription key="fontDescription" name="OpenSans-ExtraBold" family="Open Sans" pointSize="30"/>
                                 <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -42,7 +42,7 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fzA-9C-RWa" secondAttribute="trailing" constant="20" id="37i-hs-gdj"/>
                             <constraint firstItem="QQl-MS-oWB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="NcG-hV-7Gg"/>
-                            <constraint firstItem="QQl-MS-oWB" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="aig-NW-gvG"/>
+                            <constraint firstItem="QQl-MS-oWB" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="aig-NW-gvG"/>
                             <constraint firstItem="fzA-9C-RWa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ps3-XP-8au"/>
                             <constraint firstItem="fzA-9C-RWa" firstAttribute="top" secondItem="QQl-MS-oWB" secondAttribute="bottom" constant="20" id="yiS-eI-oaV"/>
                         </constraints>

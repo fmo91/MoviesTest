@@ -28,8 +28,10 @@ final class MoviesSearchListViewController: BaseViewController {
         
         movies.asObservable()
             .subscribe(onNext: { [weak self] (_) in
-                self?.tableView.reloadData()
-            })
+//                self?.tableView.reloadData()
+                let section = IndexSet.init(integer: 0)
+                self?.tableView.reloadSections(section, with: .automatic)
+            }) 
             .disposed(by: disposeBag)
     }
     

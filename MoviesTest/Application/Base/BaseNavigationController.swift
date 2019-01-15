@@ -13,13 +13,8 @@ final class BaseNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font: UIFont(customFont: .openSansBold, size: 20.0),
+        navigationBar.titleTextAttributes = [
+            .font: UIFont(customFont: .openSansExtraBold, size: 20.0),
             .foregroundColor: UIColor.custom.black
         ]
     }

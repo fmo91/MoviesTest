@@ -94,6 +94,14 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
         if indexPath.row == viewModel.movies.value.count - 1 {
             didReachedEnd.onNext(())
         }
+        
+        let scaleFactor: CGFloat = 0.6
+        cell.transform = CGAffineTransform.identity.scaledBy(x: scaleFactor, y: scaleFactor)
+        cell.alpha = 0.5
+        UIView.animate(withDuration: 0.2) {
+            cell.transform = .identity
+            cell.alpha = 1.0
+        }
     }
 }
 

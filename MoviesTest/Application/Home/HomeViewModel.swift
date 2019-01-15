@@ -40,6 +40,8 @@ final class HomeViewModel: HomeViewModelType {
         self.source = source
         
         searchResult = searchText.asObservable()
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
             .flatMap { text in source.searchMovies(text: text) }
             .map { movies in movies.toSearchMovieEntities }
             .asDriver(onErrorJustReturn: [])
