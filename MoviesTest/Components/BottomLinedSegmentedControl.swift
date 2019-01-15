@@ -119,8 +119,8 @@ extension BottomLinedSegmentedControl {
         }()
         
         // MARK: - Attributes -
-        private static let selectedFont = UIFont.boldSystemFont(ofSize: 15.0)
-        private static let unselectedFont = UIFont.systemFont(ofSize: 15.0)
+        private static let selectedFont = UIFont(customFont: .openSansBold, size: 15.0)
+        private static let unselectedFont = UIFont(customFont: .openSansRegular, size: 15.0)
         
         var isItemSelected: Bool = false {
             didSet {
@@ -155,7 +155,6 @@ extension BottomLinedSegmentedControl {
 extension Reactive where Base: BottomLinedSegmentedControl {
     var progress: Binder<CGFloat> {
         return Binder(self.base) { (segmentedControl: BottomLinedSegmentedControl, progressValue: CGFloat) in
-            print("P V => \(progressValue)")
             segmentedControl.bottomIndicatorLeadingConstraint?.constant = (segmentedControl.itemContainers.first?.frame.width ?? 0.0) * progressValue
             segmentedControl.layoutIfNeeded()
         }

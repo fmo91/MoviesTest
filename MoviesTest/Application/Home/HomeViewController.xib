@@ -28,13 +28,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0i-NH-JC1" userLabel="Main View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJc-0z-vdR" customClass="BottomLinedSegmentedControl" customModule="MoviesTest" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="44" id="tGL-Uh-niC"/>
-                            </constraints>
-                        </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8e-6Y-DLl">
                             <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                             <subviews>
@@ -50,6 +43,13 @@
                                 <constraint firstItem="gu0-KL-auF" firstAttribute="leading" secondItem="i8e-6Y-DLl" secondAttribute="leading" id="ivt-uj-9xh"/>
                             </constraints>
                         </scrollView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJc-0z-vdR" customClass="BottomLinedSegmentedControl" customModule="MoviesTest" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="tGL-Uh-niC"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

@@ -31,6 +31,7 @@ final class HomeViewController: BaseViewController {
         
         self.title = "MOVIES TEST"
         
+        categoriesSegmentedControl.addShadow()
         self.setupSearchController()
         self.addSearchListViewController()
         self.addCategoriesControllers()
@@ -104,6 +105,7 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Setup -
     private func setupSearchController() {
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Movies"
         navigationItem.searchController = searchController

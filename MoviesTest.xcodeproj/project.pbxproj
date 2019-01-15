@@ -23,6 +23,18 @@
 		EDE04C6921ED8EBD00A39C41 /* MovieDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C6821ED8EBD00A39C41 /* MovieDetailViewControllerTests.swift */; };
 		EDE04C6B21ED8ED200A39C41 /* MovieDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C6A21ED8ED200A39C41 /* MovieDetailViewModelTests.swift */; };
 		EDE04C6D21ED8FD100A39C41 /* HomeViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C6C21ED8FD100A39C41 /* HomeViewModelMock.swift */; };
+		EDE04C7C21EE54BF00A39C41 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7121EE54BE00A39C41 /* OpenSans-Light.ttf */; };
+		EDE04C7D21EE54BF00A39C41 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7221EE54BE00A39C41 /* OpenSans-ExtraBold.ttf */; };
+		EDE04C7E21EE54BF00A39C41 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7321EE54BE00A39C41 /* OpenSans-LightItalic.ttf */; };
+		EDE04C7F21EE54BF00A39C41 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7421EE54BE00A39C41 /* OpenSans-SemiBold.ttf */; };
+		EDE04C8021EE54BF00A39C41 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7521EE54BE00A39C41 /* OpenSans-SemiBoldItalic.ttf */; };
+		EDE04C8121EE54BF00A39C41 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7621EE54BE00A39C41 /* OpenSans-Italic.ttf */; };
+		EDE04C8221EE54BF00A39C41 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7721EE54BE00A39C41 /* OpenSans-Bold.ttf */; };
+		EDE04C8321EE54BF00A39C41 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7821EE54BE00A39C41 /* Pacifico-Regular.ttf */; };
+		EDE04C8421EE54BF00A39C41 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7921EE54BE00A39C41 /* OpenSans-ExtraBoldItalic.ttf */; };
+		EDE04C8521EE54BF00A39C41 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7A21EE54BE00A39C41 /* OpenSans-Regular.ttf */; };
+		EDE04C8621EE54BF00A39C41 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7B21EE54BF00A39C41 /* OpenSans-BoldItalic.ttf */; };
+		EDE04C8821EE5BBA00A39C41 /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C8721EE5BBA00A39C41 /* UIFont+Custom.swift */; };
 		EDF6349121E9627700295D4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349021E9627700295D4C /* BaseViewController.swift */; };
 		EDF6349521E99BD100295D4C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349421E99BD100295D4C /* Movie.swift */; };
 		EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349621EA96C400295D4C /* MoviesSource.swift */; };
@@ -103,6 +115,18 @@
 		EDE04C6821ED8EBD00A39C41 /* MovieDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		EDE04C6A21ED8ED200A39C41 /* MovieDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelTests.swift; sourceTree = "<group>"; };
 		EDE04C6C21ED8FD100A39C41 /* HomeViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelMock.swift; sourceTree = "<group>"; };
+		EDE04C7121EE54BE00A39C41 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		EDE04C7221EE54BE00A39C41 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EDE04C7321EE54BE00A39C41 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		EDE04C7421EE54BE00A39C41 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		EDE04C7521EE54BE00A39C41 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		EDE04C7621EE54BE00A39C41 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		EDE04C7721EE54BE00A39C41 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		EDE04C7821EE54BE00A39C41 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		EDE04C7921EE54BE00A39C41 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		EDE04C7A21EE54BE00A39C41 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		EDE04C7B21EE54BF00A39C41 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		EDE04C8721EE5BBA00A39C41 /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		EDF6349021E9627700295D4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EDF6349421E99BD100295D4C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		EDF6349621EA96C400295D4C /* MoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSource.swift; sourceTree = "<group>"; };
@@ -339,6 +363,24 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
+		EDE04C7021EE548200A39C41 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EDE04C7721EE54BE00A39C41 /* OpenSans-Bold.ttf */,
+				EDE04C7B21EE54BF00A39C41 /* OpenSans-BoldItalic.ttf */,
+				EDE04C7221EE54BE00A39C41 /* OpenSans-ExtraBold.ttf */,
+				EDE04C7921EE54BE00A39C41 /* OpenSans-ExtraBoldItalic.ttf */,
+				EDE04C7621EE54BE00A39C41 /* OpenSans-Italic.ttf */,
+				EDE04C7121EE54BE00A39C41 /* OpenSans-Light.ttf */,
+				EDE04C7321EE54BE00A39C41 /* OpenSans-LightItalic.ttf */,
+				EDE04C7A21EE54BE00A39C41 /* OpenSans-Regular.ttf */,
+				EDE04C7421EE54BE00A39C41 /* OpenSans-SemiBold.ttf */,
+				EDE04C7521EE54BE00A39C41 /* OpenSans-SemiBoldItalic.ttf */,
+				EDE04C7821EE54BE00A39C41 /* Pacifico-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		EDF6348921E961D600295D4C /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +418,7 @@
 				EDF634E721EBE7FA00295D4C /* Conn.swift */,
 				EDF634EE21EBEA2200295D4C /* Conn+RxSwift.swift */,
 				ED94894121ECBA8100DEA5BF /* Reachability.swift */,
+				EDE04C8721EE5BBA00A39C41 /* UIFont+Custom.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -434,6 +477,7 @@
 		EDF6349F21EA97D000295D4C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EDE04C7021EE548200A39C41 /* Fonts */,
 				ED3B97CF21E92BCC0043F788 /* Assets.xcassets */,
 				EDF634D221EB5DE200295D4C /* Colors.xcassets */,
 				ED3B97D121E92BCC0043F788 /* LaunchScreen.storyboard */,
@@ -603,14 +647,25 @@
 			files = (
 				EDF634D321EB5DE200295D4C /* Colors.xcassets in Resources */,
 				EDF634E621EBCB7100295D4C /* MovieDetailTopInfoTableViewCell.xib in Resources */,
+				EDE04C7F21EE54BF00A39C41 /* OpenSans-SemiBold.ttf in Resources */,
+				EDE04C8621EE54BF00A39C41 /* OpenSans-BoldItalic.ttf in Resources */,
+				EDE04C8221EE54BF00A39C41 /* OpenSans-Bold.ttf in Resources */,
 				EDF634B021EA997900295D4C /* MovieCollectionViewCell.xib in Resources */,
 				EDF634A721EA988F00295D4C /* MovieDetailViewController.xib in Resources */,
 				ED3B97D321E92BCC0043F788 /* LaunchScreen.storyboard in Resources */,
 				ED3B97D021E92BCC0043F788 /* Assets.xcassets in Resources */,
 				EDF634A321EA987F00295D4C /* MoviesListViewController.xib in Resources */,
+				EDE04C8321EE54BF00A39C41 /* Pacifico-Regular.ttf in Resources */,
+				EDE04C8521EE54BF00A39C41 /* OpenSans-Regular.ttf in Resources */,
 				EDF634C921EAA8DF00295D4C /* MoviesSearchListViewController.xib in Resources */,
+				EDE04C8421EE54BF00A39C41 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				EDE04C8121EE54BF00A39C41 /* OpenSans-Italic.ttf in Resources */,
+				EDE04C8021EE54BF00A39C41 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				EDF634BA21EA9F1500295D4C /* HomeViewController.xib in Resources */,
+				EDE04C7C21EE54BF00A39C41 /* OpenSans-Light.ttf in Resources */,
 				EDF634D121EB5C8700295D4C /* MovieSearchResultTableViewCell.xib in Resources */,
+				EDE04C7E21EE54BF00A39C41 /* OpenSans-LightItalic.ttf in Resources */,
+				EDE04C7D21EE54BF00A39C41 /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +811,7 @@
 				EDF6349B21EA973900295D4C /* RemoteMoviesSource.swift in Sources */,
 				EDF634DB21EB6A3800295D4C /* UIColor+Custom.swift in Sources */,
 				EDF634B921EA9F1500295D4C /* HomeViewController.swift in Sources */,
+				EDE04C8821EE5BBA00A39C41 /* UIFont+Custom.swift in Sources */,
 				EDF634C421EAA8BD00295D4C /* HomeBuilder.swift in Sources */,
 				EDF634D921EB679A00295D4C /* BottomLinedSegmentedControl.swift in Sources */,
 				EDF634E521EBCB7100295D4C /* MovieDetailTopInfoTableViewCell.swift in Sources */,
