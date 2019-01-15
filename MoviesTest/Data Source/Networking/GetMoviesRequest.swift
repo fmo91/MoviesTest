@@ -16,9 +16,20 @@ struct GetMoviesRequest: RequestType {
     
     var data: RequestData {
         return RequestData(
-            path: "\(RequestConstants.baseURL)/discover/movie?api_key=\(RequestConstants.apiKey)&language=en-US&sort_by=\(category.apiOption)&include_adult=false&page=\(page)",
+            path: "\(RequestConstants.baseURL)/discover/movie",
             method: .get,
-            params: nil,
+            params: {
+                var params = [
+                    "api_key"       : RequestConstants.apiKey,
+                    "language"      : "en-US",
+                    "include_adult" : "false",
+                    "page"          : page.description
+                ]
+                for (key, value) in category.apiOptions {
+                    params[key] = value
+                }
+                return params
+            }(),
             headers: nil
         )
     }
@@ -30,11 +41,11 @@ struct GetMoviesRequest: RequestType {
 }
 
 private extension Movie.Category {
-    var apiOption: String {
+    var apiOptions: [String: String] {
         switch self {
-        case .popular   : return "popularity.desc"
-        case .topRated  : return "vote_average.desc"
-        case .upcoming  : return "release_date.desc"
+        case .popular   : return ["sort_by": "popularity.desc"]
+        case .topRated  : return ["sort_by": "vote_average.desc"]
+        case .upcoming  : return ["sort_by": "release_date.desc"]
         }
     }
 }

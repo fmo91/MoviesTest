@@ -12,21 +12,15 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Views -
     @IBOutlet weak var containerScrollView: UIScrollView!
+    @IBOutlet weak var categoriesViewControllersContainerView: UIStackView!
     @IBOutlet weak var mainContainer: UIView!
     @IBOutlet weak var searchResultsContainer: UIView!
     @IBOutlet weak var categoriesSegmentedControl: BottomLinedSegmentedControl!
     
-    @IBOutlet weak var popularMoviesContainer: UIView!
-    @IBOutlet weak var topRatedMoviesContainer: UIView!
-    @IBOutlet weak var upcomingMoviesContainer: UIView!
-    
     let searchController = UISearchController(searchResultsController: nil)
     
     weak var searchListViewController: MoviesSearchListViewController!
-    
-    weak var popularMoviesViewController: UIViewController!
-    weak var topRatedMoviesViewController: UIViewController!
-    weak var upcomingMoviesViewController: UIViewController!
+    var categoriesViewControllers: [UIViewController] = []
     
     // MARK: - Attributes -
     private let viewModel: HomeViewModelType
@@ -123,32 +117,32 @@ final class HomeViewController: BaseViewController {
     }
     
     private func addCategoriesControllers() {
-        let _popularMoviesViewController = MoviesListBuilder(moviesSource: viewModel.popularMovies).build()
-        let _topRatedMoviesViewController = MoviesListBuilder(moviesSource: viewModel.topRatedMovies).build()
-        let _upcomingMoviesViewController = MoviesListBuilder(moviesSource: viewModel.upcomingMovies).build()
+        let viewControllers = Movie.Category.allCases
+            .map { self.viewModel.source(for: $0) }
+            .map { MoviesListBuilder(moviesSource: $0).build() }
         
-        _popularMoviesViewController.embed(in: self, onView: popularMoviesContainer)
-        _topRatedMoviesViewController.embed(in: self, onView: topRatedMoviesContainer)
-        _upcomingMoviesViewController.embed(in: self, onView: upcomingMoviesContainer)
+        for (index, controller) in viewControllers.enumerated() {
+            addCategoryViewController(controller)
+            
+            let category = Movie.Category.allCases[index]
+            controller.didReachedEnd.asObservable()
+                .map { category }
+                .bind(to: viewModel.didReachedEndForCategory)
+                .disposed(by: disposeBag)
+        }
         
-        _popularMoviesViewController.didReachedEnd.asObservable()
-            .map { Movie.Category.popular }
-            .bind(to: viewModel.didReachedEndForCategory)
-            .disposed(by: disposeBag)
-        
-        _topRatedMoviesViewController.didReachedEnd.asObservable()
-            .map { Movie.Category.topRated }
-            .bind(to: viewModel.didReachedEndForCategory)
-            .disposed(by: disposeBag)
-        
-        _upcomingMoviesViewController.didReachedEnd.asObservable()
-            .map { Movie.Category.upcoming }
-            .bind(to: viewModel.didReachedEndForCategory)
-            .disposed(by: disposeBag)
-        
-        popularMoviesViewController = _popularMoviesViewController
-        topRatedMoviesViewController = _topRatedMoviesViewController
-        upcomingMoviesViewController = _upcomingMoviesViewController
+        categoriesViewControllers = viewControllers
+    }
+    
+    private func addCategoryViewController(_ controller: UIViewController) {
+        let container = UIView()
+        self.categoriesViewControllersContainerView.addArrangedSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        [
+            container.heightAnchor.constraint(equalTo: self.containerScrollView.heightAnchor),
+            container.widthAnchor.constraint(equalTo: self.containerScrollView.widthAnchor),
+            ].forEach { $0.isActive = true }
+        controller.embed(in: self, onView: container)
     }
     
 }

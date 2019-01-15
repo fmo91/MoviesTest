@@ -13,12 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MoviesTest" customModuleProvider="target">
             <connections>
                 <outlet property="categoriesSegmentedControl" destination="hJc-0z-vdR" id="TDb-kp-HPc"/>
+                <outlet property="categoriesViewControllersContainerView" destination="gu0-KL-auF" id="3IF-hh-1Sv"/>
                 <outlet property="containerScrollView" destination="i8e-6Y-DLl" id="3FF-7H-zvj"/>
                 <outlet property="mainContainer" destination="P0i-NH-JC1" id="9Js-hW-iwE"/>
-                <outlet property="popularMoviesContainer" destination="Ap6-7J-zRB" id="dBv-6p-1Nm"/>
                 <outlet property="searchResultsContainer" destination="s0K-q0-KiX" id="g21-sS-p28"/>
-                <outlet property="topRatedMoviesContainer" destination="6rV-SR-608" id="xRa-jt-wvE"/>
-                <outlet property="upcomingMoviesContainer" destination="I0k-Kj-Pkt" id="Atv-3I-S7h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,25 +35,11 @@
                                 <constraint firstAttribute="height" constant="44" id="tGL-Uh-niC"/>
                             </constraints>
                         </view>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8e-6Y-DLl">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8e-6Y-DLl">
                             <rect key="frame" x="0.0" y="44" width="375" height="559"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gu0-KL-auF">
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gu0-KL-auF">
                                     <rect key="frame" x="0.0" y="0.0" width="1125" height="559"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ap6-7J-zRB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rV-SR-608">
-                                            <rect key="frame" x="375" y="0.0" width="375" height="559"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0k-Kj-Pkt">
-                                            <rect key="frame" x="750" y="0.0" width="375" height="559"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
-                                    </subviews>
                                 </stackView>
                             </subviews>
                             <constraints>
@@ -63,7 +47,6 @@
                                 <constraint firstItem="gu0-KL-auF" firstAttribute="top" secondItem="i8e-6Y-DLl" secondAttribute="top" id="Ell-j6-dgL"/>
                                 <constraint firstAttribute="bottom" secondItem="gu0-KL-auF" secondAttribute="bottom" id="Jkt-s4-lNE"/>
                                 <constraint firstAttribute="trailing" secondItem="gu0-KL-auF" secondAttribute="trailing" id="JvH-Nu-bZk"/>
-                                <constraint firstItem="Ap6-7J-zRB" firstAttribute="width" secondItem="i8e-6Y-DLl" secondAttribute="width" id="iaW-Qf-vqD"/>
                                 <constraint firstItem="gu0-KL-auF" firstAttribute="leading" secondItem="i8e-6Y-DLl" secondAttribute="leading" id="ivt-uj-9xh"/>
                             </constraints>
                         </scrollView>

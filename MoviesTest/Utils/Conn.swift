@@ -86,9 +86,26 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
     @discardableResult
     public func dispatch(request: RequestData, onSuccess: @escaping (Data) -> Void, onError: @escaping (Error) -> Void) -> URLSessionDataTask? {
         print("-------------------")
-        print("Dispatching request to \(request.path)")
         
-        guard let url = URL(string: request.path) else {
+        let path = request.method == .get
+            ? {
+                var components = URLComponents(string: request.path)
+                var queryItems: [URLQueryItem] = []
+                if let _params = request.params {
+                    for (key, value) in _params {
+                        if let _value = value as? String {
+                            queryItems.append(URLQueryItem(name: key, value: _value))
+                        }
+                    }
+                }
+                components?.queryItems = queryItems
+                return components?.url?.absoluteString ?? request.path
+            }()
+            : request.path
+        
+        print("Dispatching request to \(path)")
+        
+        guard let url = URL(string: path) else {
             onError(ConnError.invalidURL)
             return nil
         }
@@ -101,7 +118,7 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
         }
         
         do {
-            if let params = request.params {
+            if let params = request.params, request.method != .get {
                 urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
             }
         } catch let error {
