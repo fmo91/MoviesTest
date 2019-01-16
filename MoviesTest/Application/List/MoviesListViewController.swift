@@ -88,19 +88,29 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = MovieDetailBuilder(movie: viewModel.movies.value[indexPath.row].movie, animator: cardTransitionAnimator).build()
+        let viewController = MovieDetailBuilder(movie: self.viewModel.movies.value[indexPath.row].movie, animator: self.cardTransitionAnimator).build()
+        self.updateTransitionAnimator(for: indexPath)
+        self.navigationController?.delegate = self
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock { [unowned self] in
+            collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.top, animated: false)
+            self.updateTransitionAnimator(for: indexPath)
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+        CATransaction.commit()
+    }
+    
+    private func updateTransitionAnimator(for indexPath: IndexPath) {
         guard let cellForIndex = collectionView.cellForItem(at: indexPath)
             , let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-        else {
-            return
+            else {
+                return
         }
         let convertedRect = collectionView.convert(attributes.frame, to: nil)
         
-        cardTransitionAnimator.originRect = convertedRect
-        cardTransitionAnimator.originView = (cellForIndex as! MovieCollectionViewCell)
-        
-        navigationController?.delegate = self
-        navigationController?.pushViewController(viewController, animated: true)
+        self.cardTransitionAnimator.originRect = convertedRect
+        self.cardTransitionAnimator.originView = (cellForIndex as! MovieCollectionViewCell)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
