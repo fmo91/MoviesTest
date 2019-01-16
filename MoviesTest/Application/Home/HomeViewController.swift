@@ -47,6 +47,7 @@ final class HomeViewController: BaseViewController {
         searchListViewController.didSelectMovie.asObservable()
             .subscribe(onNext: { [weak self] (movie: SearchMovieEntity) in
                 let viewController = MovieDetailBuilder(movie: movie.movie).build()
+                self?.navigationController?.delegate = nil
                 self?.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: disposeBag)

@@ -11,7 +11,7 @@ import Foundation
 struct GetMoviesRequest: RequestType {
     typealias ResponseType = PagedMoviesResponse
     
-    let category: Movie.Category
+    let fetchFilter: MoviesFetchFilter?
     let page: Int
     
     var data: RequestData {
@@ -25,8 +25,10 @@ struct GetMoviesRequest: RequestType {
                     "include_adult" : "false",
                     "page"          : page.description
                 ]
-                for (key, value) in category.apiOptions {
-                    params[key] = value
+                if let fetchFilter = self.fetchFilter {
+                    for (key, value) in fetchFilter.apiOptions {
+                        params[key] = value
+                    }
                 }
                 return params
             }(),
@@ -34,13 +36,17 @@ struct GetMoviesRequest: RequestType {
         )
     }
     
-    init (category: Movie.Category, page: Int? = 1) {
-        self.category = category
+    init (fetchFilter: MoviesFetchFilter?, page: Int? = 1) {
+        self.fetchFilter = fetchFilter
         self.page = page ?? 1
     }
 }
 
-private extension Movie.Category {
+protocol MoviesFetchFilter {
+    var apiOptions: [String: String] { get }
+}
+
+extension Movie.Category: MoviesFetchFilter {
     var apiOptions: [String: String] {
         switch self {
         case .popular   : return ["sort_by": "popularity.desc"]

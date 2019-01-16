@@ -13,6 +13,7 @@
 		ED3B97CE21E92BCA0043F788 /* MoviesTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED3B97CC21E92BCA0043F788 /* MoviesTest.xcdatamodeld */; };
 		ED3B97D021E92BCC0043F788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3B97CF21E92BCC0043F788 /* Assets.xcassets */; };
 		ED3B97D321E92BCC0043F788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED3B97D121E92BCC0043F788 /* LaunchScreen.storyboard */; };
+		ED3B9FDA21EEAB15006A7AE5 /* CardOpeningAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3B9FD921EEAB15006A7AE5 /* CardOpeningAnimator.swift */; };
 		ED94894221ECBA8100DEA5BF /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED94894121ECBA8100DEA5BF /* InternetConnection.swift */; };
 		EDE04C5821ED87E600A39C41 /* MoviesSearchListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C5721ED87E600A39C41 /* MoviesSearchListViewControllerTests.swift */; };
 		EDE04C5B21ED88F600A39C41 /* SearchMovieEntity+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C5A21ED88F600A39C41 /* SearchMovieEntity+Convenience.swift */; };
@@ -105,6 +106,7 @@
 		ED3B97D421E92BCC0043F788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED3B97D921E92BCD0043F788 /* MoviesTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3B97DF21E92BCD0043F788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED3B9FD921EEAB15006A7AE5 /* CardOpeningAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOpeningAnimator.swift; sourceTree = "<group>"; };
 		ED94894121ECBA8100DEA5BF /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		EDE04C5721ED87E600A39C41 /* MoviesSearchListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSearchListViewControllerTests.swift; sourceTree = "<group>"; };
 		EDE04C5A21ED88F600A39C41 /* SearchMovieEntity+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMovieEntity+Convenience.swift"; sourceTree = "<group>"; };
@@ -262,6 +264,14 @@
 				ED3B97DF21E92BCD0043F788 /* Info.plist */,
 			);
 			path = MoviesTestTests;
+			sourceTree = "<group>";
+		};
+		ED3B9FD821EEAAFE006A7AE5 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				ED3B9FD921EEAB15006A7AE5 /* CardOpeningAnimator.swift */,
+			);
+			path = Transition;
 			sourceTree = "<group>";
 		};
 		EDE04C4C21ED874500A39C41 /* Data Source */ = {
@@ -452,6 +462,7 @@
 		EDF6349221E999BB00295D4C /* List */ = {
 			isa = PBXGroup;
 			children = (
+				ED3B9FD821EEAAFE006A7AE5 /* Transition */,
 				EDF634B121EA999A00295D4C /* Entities */,
 				EDF634AC21EA996900295D4C /* Cells */,
 				EDF634A021EA987F00295D4C /* MoviesListViewController.swift */,
@@ -799,6 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDF634DF21EBB2B000295D4C /* UIView+Convenience.swift in Sources */,
+				ED3B9FDA21EEAB15006A7AE5 /* CardOpeningAnimator.swift in Sources */,
 				EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */,
 				ED94894221ECBA8100DEA5BF /* InternetConnection.swift in Sources */,
 				ED3B97CE21E92BCA0043F788 /* MoviesTest.xcdatamodeld in Sources */,

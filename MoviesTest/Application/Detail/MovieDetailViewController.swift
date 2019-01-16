@@ -19,7 +19,7 @@ final class MovieDetailViewController: BaseViewController {
     
     // MARK: - Attributes -
     private let viewModel: MovieDetailViewModel
-    private static let topImageViewInitialHeight: CGFloat = 270.0
+    static let topImageViewInitialHeight: CGFloat = 270.0
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {

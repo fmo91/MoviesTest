@@ -19,6 +19,8 @@ final class MoviesListViewController: BaseViewController {
     private let viewModel: MoviesListViewModel
     
     let didReachedEnd = PublishSubject<Void>()
+    
+    private let cardTransitionAnimator = CardTransitionAnimator()
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -87,6 +89,17 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = MovieDetailBuilder(movie: viewModel.movies.value[indexPath.row].movie).build()
+        guard let cellForIndex = collectionView.cellForItem(at: indexPath)
+            , let attributes = collectionView.layoutAttributesForItem(at: indexPath)
+        else {
+            return
+        }
+        let convertedRect = collectionView.convert(attributes.frame, to: nil)
+        
+        cardTransitionAnimator.originRect = convertedRect
+        cardTransitionAnimator.originView = (cellForIndex as! MovieCollectionViewCell)
+        
+        navigationController?.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -132,5 +145,21 @@ extension MoviesListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return .leastNonzeroMagnitude
+    }
+}
+
+// MARK: - UINavigationControllerDelegate -
+extension MoviesListViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch operation {
+        case .push:
+            cardTransitionAnimator.operation = operation
+            return cardTransitionAnimator
+        case .pop:
+            cardTransitionAnimator.operation = operation
+            return cardTransitionAnimator
+        case .none:
+            return nil
+        }
     }
 }
