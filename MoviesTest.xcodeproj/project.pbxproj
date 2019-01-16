@@ -44,6 +44,8 @@
 		EDE04C8521EE54BF00A39C41 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7A21EE54BE00A39C41 /* OpenSans-Regular.ttf */; };
 		EDE04C8621EE54BF00A39C41 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDE04C7B21EE54BF00A39C41 /* OpenSans-BoldItalic.ttf */; };
 		EDE04C8821EE5BBA00A39C41 /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE04C8721EE5BBA00A39C41 /* UIFont+Custom.swift */; };
+		EDE7590321EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE7590121EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.swift */; };
+		EDE7590421EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE7590221EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.xib */; };
 		EDF6349121E9627700295D4C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349021E9627700295D4C /* BaseViewController.swift */; };
 		EDF6349521E99BD100295D4C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349421E99BD100295D4C /* Movie.swift */; };
 		EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF6349621EA96C400295D4C /* MoviesSource.swift */; };
@@ -145,6 +147,8 @@
 		EDE04C7A21EE54BE00A39C41 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		EDE04C7B21EE54BF00A39C41 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		EDE04C8721EE5BBA00A39C41 /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		EDE7590121EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailSectionHeaderTextTableViewCell.swift; sourceTree = "<group>"; };
+		EDE7590221EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailSectionHeaderTextTableViewCell.xib; sourceTree = "<group>"; };
 		EDF6349021E9627700295D4C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EDF6349421E99BD100295D4C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		EDF6349621EA96C400295D4C /* MoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSource.swift; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 				ED7FFCDC21EEC6BF00E96977 /* MovieDetailInfoTableViewCell.xib */,
 				ED7FFCE221EECB3800E96977 /* MovieDetailVideosTableViewCell.swift */,
 				ED7FFCE321EECB3800E96977 /* MovieDetailVideosTableViewCell.xib */,
+				EDE7590121EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.swift */,
+				EDE7590221EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -711,6 +717,7 @@
 				EDE04C7E21EE54BF00A39C41 /* OpenSans-LightItalic.ttf in Resources */,
 				EDE04C7D21EE54BF00A39C41 /* OpenSans-ExtraBold.ttf in Resources */,
 				ED7FFCE521EECB3800E96977 /* MovieDetailVideosTableViewCell.xib in Resources */,
+				EDE7590421EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +873,7 @@
 				EDF6349921EA970C00295D4C /* LocalMoviesSource.swift in Sources */,
 				EDF634EF21EBEA2200295D4C /* Conn+RxSwift.swift in Sources */,
 				EDF634A921EA98C000295D4C /* MoviesListViewModel.swift in Sources */,
+				EDE7590321EF8A5A00E69420 /* MovieDetailSectionHeaderTextTableViewCell.swift in Sources */,
 				ED7FFCE121EEC7F100E96977 /* MovieDetailInfoSection.swift in Sources */,
 				EDF634BE21EAA14200295D4C /* BaseNavigationController.swift in Sources */,
 				EDF634ED21EBE85F00295D4C /* RequestConstants.swift in Sources */,

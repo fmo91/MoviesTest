@@ -44,8 +44,8 @@ final class MovieDetailViewModel {
         source.getVideos(movieId: movie.id)
             .map { videos in
                 videos.compactMap { video in
-//                    video.key
-                    video.id
+                    video.key
+//                    video.id
                 }
             }
             .catchErrorJustReturn([])

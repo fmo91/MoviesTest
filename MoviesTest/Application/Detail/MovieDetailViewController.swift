@@ -71,6 +71,7 @@ final class MovieDetailViewController: BaseViewController {
     func setupTableView() {
         MovieDetailTopInfoTableViewCell.register(in: tableView)
         MovieDetailInfoTableViewCell.register(in: tableView)
+        MovieDetailSectionHeaderTextTableViewCell.register(in: tableView)
         MovieDetailVideosTableViewCell.register(in: tableView)
         
         tableView.delegate = self
@@ -83,6 +84,7 @@ private enum Section: Int, ReusableViewEnum {
     case  topImageView = 0
         , topInfo
         , info
+        , videosHeader
         , videos
 }
 
@@ -100,8 +102,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 1
         case .info:
             return viewModel.infoSections.count
-        case .videos:
+        case .videosHeader:
             return viewModel.videos.value.isEmpty ? 0 : 1
+        case .videos:
+            return viewModel.videos.value.count
         }
     }
     
@@ -120,9 +124,13 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = MovieDetailInfoTableViewCell.dequeue(from: tableView)
             cell.configure(with: viewModel.infoSections[indexPath.row])
             return cell
+        case .videosHeader:
+            let cell = MovieDetailSectionHeaderTextTableViewCell.dequeue(from: tableView)
+            cell.configure(with: "Trailers")
+            return cell
         case .videos:
             let cell = MovieDetailVideosTableViewCell.dequeue(from: tableView)
-            cell.configure(with: viewModel.videos.value.first!)
+            cell.configure(with: viewModel.videos.value[indexPath.row])
             return cell
         }
     }
@@ -135,6 +143,8 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return MovieDetailTopInfoTableViewCell.height
         case .info:
             return MovieDetailInfoTableViewCell.height
+        case .videosHeader:
+            return MovieDetailSectionHeaderTextTableViewCell.height
         case .videos:
             return MovieDetailVideosTableViewCell.height
         }

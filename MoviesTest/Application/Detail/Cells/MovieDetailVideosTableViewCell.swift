@@ -22,7 +22,8 @@ final class MovieDetailVideosTableViewCell: UITableViewCell, Dequeuable, Registr
     
     // MARK: - Configuration -
     func configure(with videoId: String) {
-        playerView.loadVideo(byId: videoId, startSeconds: 0.0, suggestedQuality: .auto)
+        playerView.load(withVideoId: videoId)
+        playerView.playVideo()
     }
     
     // MARK: - Size -
