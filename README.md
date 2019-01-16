@@ -1,5 +1,7 @@
 # Movies Test
 
+![SampleGif](http://freegifmaker.me/images/2e4Wm/)
+
 ## Decisiones de arquitectura
 
 La arquitectura de **Movies Test** está basada en el patrón MVVM (Model-View-ViewModel), con los siguientes objetivos:
