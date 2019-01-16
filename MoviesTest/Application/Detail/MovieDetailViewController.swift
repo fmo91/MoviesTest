@@ -19,7 +19,10 @@ final class MovieDetailViewController: BaseViewController {
     
     // MARK: - Attributes -
     private let viewModel: MovieDetailViewModel
+    private let animator: CardTransitionAnimator?
     static let topImageViewInitialHeight: CGFloat = 270.0
+    private var interactionController: UIPercentDrivenInteractiveTransition?
+    private var edgeSwipeGestureRecognizer: UIScreenEdgePanGestureRecognizer?
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -50,6 +53,14 @@ final class MovieDetailViewController: BaseViewController {
                 self?.tableView.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        edgeSwipeGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        edgeSwipeGestureRecognizer!.edges = .left
+        view.addGestureRecognizer(edgeSwipeGestureRecognizer!)
+        
+        if let _ = animator {
+            navigationController?.delegate = self
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,8 +69,9 @@ final class MovieDetailViewController: BaseViewController {
     }
     
     // MARK: - Init -
-    init(viewModel: MovieDetailViewModel) {
+    init(viewModel: MovieDetailViewModel, animator: CardTransitionAnimator?) {
         self.viewModel = viewModel
+        self.animator = animator
         super.init()
     }
     
@@ -76,6 +88,25 @@ final class MovieDetailViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    // MARK: - Actions -
+    @objc func handleSwipe(_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
+        let percent = gestureRecognizer.translation(in: gestureRecognizer.view!).x / gestureRecognizer.view!.bounds.size.width
+        
+        if gestureRecognizer.state == .began {
+            interactionController = UIPercentDrivenInteractiveTransition()
+            navigationController?.popViewController(animated: true)
+        } else if gestureRecognizer.state == .changed {
+            interactionController?.update(CGFloat.minimum(percent * 1.5, 1.0))
+        } else if gestureRecognizer.state == .ended {
+            if percent > 0.5 && gestureRecognizer.state != .cancelled {
+                interactionController?.finish()
+            } else {
+                interactionController?.cancel()
+            }
+            interactionController = nil
+        }
     }
 
 }
@@ -152,5 +183,29 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+}
+
+// MARK: - UINavigationControllerDelegate -
+extension MovieDetailViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactionController
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        guard let animator = self.animator else {
+            return nil
+        }
+        
+        switch operation {
+        case .push:
+            animator.operation = operation
+            return animator
+        case .pop:
+            animator.operation = operation
+            return animator
+        case .none:
+            return nil
+        }
     }
 }

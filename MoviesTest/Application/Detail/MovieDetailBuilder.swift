@@ -11,16 +11,18 @@ import UIKit
 final class MovieDetailBuilder {
     // MARK: - Attributes -
     private let movie: Movie
+    private let animator: CardTransitionAnimator?
     
     // MARK: - Init -
-    init(movie: Movie) {
+    init(movie: Movie, animator: CardTransitionAnimator?) {
         self.movie = movie
+        self.animator = animator
     }
     
     // MARK: - Builder -
     func build() -> UIViewController {
         let viewModel = MovieDetailViewModel(movie: movie, source: CacheableMoviesSource())
-        let viewController = MovieDetailViewController(viewModel: viewModel)
+        let viewController = MovieDetailViewController(viewModel: viewModel, animator: animator)
         return viewController
     }
 }

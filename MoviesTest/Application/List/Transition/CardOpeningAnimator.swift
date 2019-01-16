@@ -54,6 +54,7 @@ final class CardTransitionAnimator: NSObject, UIViewControllerAnimatedTransition
         containerView.addSubview(viewControllerFrom.view)
         containerView.addSubview(copiedImageView)
         let duration = transitionDuration(using: transitionContext)
+        (viewControllerTo as? MovieDetailViewController)?.topImageView.alpha = 0.0
         UIView.animate(
             withDuration: duration,
             animations: {
@@ -67,12 +68,14 @@ final class CardTransitionAnimator: NSObject, UIViewControllerAnimatedTransition
                     )
                 case .pop:
                     copiedImageView.frame = CGRect(x: originRect.minX, y: originRect.minY, width: originRect.width, height: imageView.frame.height)
+                    copiedImageView.alpha = 0.0
                 case .none:
                     return
                 }
                 viewControllerFrom.view.alpha = 0.0
             },
             completion: { _ in
+                (viewControllerTo as? MovieDetailViewController)?.topImageView.alpha = 1.0
                 copiedImageView.removeFromSuperview()
                 viewControllerFrom.view.alpha = 1.0
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

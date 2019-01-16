@@ -20,7 +20,7 @@ final class MoviesListViewController: BaseViewController {
     
     let didReachedEnd = PublishSubject<Void>()
     
-    private let cardTransitionAnimator = CardTransitionAnimator()
+    let cardTransitionAnimator = CardTransitionAnimator()
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -88,7 +88,7 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = MovieDetailBuilder(movie: viewModel.movies.value[indexPath.row].movie).build()
+        let viewController = MovieDetailBuilder(movie: viewModel.movies.value[indexPath.row].movie, animator: cardTransitionAnimator).build()
         guard let cellForIndex = collectionView.cellForItem(at: indexPath)
             , let attributes = collectionView.layoutAttributesForItem(at: indexPath)
         else {
