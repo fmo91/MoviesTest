@@ -34,4 +34,8 @@ struct CacheableMoviesSource: MoviesSource {
             return localSource.getMovies(category: category, page: page)
         }
     }
+    
+    func getVideos(movieId: Int) -> Observable<[Video]> {
+        return remoteSource.getVideos(movieId: movieId)
+    }
 }

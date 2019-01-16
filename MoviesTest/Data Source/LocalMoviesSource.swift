@@ -33,6 +33,10 @@ struct LocalMoviesSource: MoviesSource {
         }
     }
     
+    func getVideos(movieId: Int) -> Observable<[Video]> {
+        return .just([])
+    }
+    
     func saveMovies(_ movies: [Movie], forSearch text: String) {
         let fetch = NSFetchRequest<TextSearch>(entityName: "TextSearch")
         fetch.predicate = NSPredicate(format: "text = %@", text)

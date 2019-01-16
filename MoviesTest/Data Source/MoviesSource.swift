@@ -12,4 +12,5 @@ import RxSwift
 protocol MoviesSource {
     func searchMovies(text: String) -> Observable<[Movie]>
     func getMovies(category: Movie.Category, page: Int?) -> Observable<[Movie]>
+    func getVideos(movieId: Int) -> Observable<[Video]>
 }

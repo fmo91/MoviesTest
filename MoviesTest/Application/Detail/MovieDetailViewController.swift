@@ -44,6 +44,12 @@ final class MovieDetailViewController: BaseViewController {
             .map { normalizedOffset in -CGFloat.minimum(normalizedOffset, 0.0) + MovieDetailViewController.topImageViewInitialHeight }
             .bind(to: topImageViewHeightConstraint.rx.constant)
             .disposed(by: disposeBag)
+        
+        viewModel.videos.asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +70,8 @@ final class MovieDetailViewController: BaseViewController {
     // MARK: - Configuration -
     func setupTableView() {
         MovieDetailTopInfoTableViewCell.register(in: tableView)
+        MovieDetailInfoTableViewCell.register(in: tableView)
+        MovieDetailVideosTableViewCell.register(in: tableView)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -74,6 +82,8 @@ final class MovieDetailViewController: BaseViewController {
 private enum Section: Int, ReusableViewEnum {
     case  topImageView = 0
         , topInfo
+        , info
+        , videos
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource -
@@ -88,6 +98,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return 1
         case .topInfo:
             return 1
+        case .info:
+            return viewModel.infoSections.count
+        case .videos:
+            return viewModel.videos.value.isEmpty ? 0 : 1
         }
     }
     
@@ -102,6 +116,14 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = MovieDetailTopInfoTableViewCell.dequeue(from: tableView)
             cell.configure(title: viewModel.movieTitle, subtitle: viewModel.movieSubtitle)
             return cell
+        case .info:
+            let cell = MovieDetailInfoTableViewCell.dequeue(from: tableView)
+            cell.configure(with: viewModel.infoSections[indexPath.row])
+            return cell
+        case .videos:
+            let cell = MovieDetailVideosTableViewCell.dequeue(from: tableView)
+            cell.configure(with: viewModel.videos.value.first!)
+            return cell
         }
     }
     
@@ -111,6 +133,10 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return MovieDetailViewController.topImageViewInitialHeight - navigationBarHeight - statusBarHeight
         case .topInfo:
             return MovieDetailTopInfoTableViewCell.height
+        case .info:
+            return MovieDetailInfoTableViewCell.height
+        case .videos:
+            return MovieDetailVideosTableViewCell.height
         }
     }
     

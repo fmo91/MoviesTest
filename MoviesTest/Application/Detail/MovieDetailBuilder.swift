@@ -19,7 +19,7 @@ final class MovieDetailBuilder {
     
     // MARK: - Builder -
     func build() -> UIViewController {
-        let viewModel = MovieDetailViewModel(movie: movie)
+        let viewModel = MovieDetailViewModel(movie: movie, source: CacheableMoviesSource())
         let viewController = MovieDetailViewController(viewModel: viewModel)
         return viewController
     }
