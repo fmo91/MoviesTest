@@ -29,7 +29,7 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Movies Test".uppercased()
+        self.title = "Movies Test"
         
         categoriesSegmentedControl.addShadow()
         self.setupSearchController()

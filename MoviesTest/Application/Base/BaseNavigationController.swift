@@ -14,7 +14,7 @@ final class BaseNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.titleTextAttributes = [
-            .font: UIFont(customFont: .openSansExtraBold, size: 20.0),
+            .font: UIFont(customFont: .pacificoRegular, size: 23.0),
             .foregroundColor: UIColor.custom.black
         ]
     }
