@@ -18,15 +18,15 @@ final class MoviesSearchListViewController: BaseViewController {
     
     // MARK: - Attributes -
     var movies = BehaviorRelay<[SearchMovieEntity]>(value: [])
-    
+    let criteriaItems: [SearchCriteriaItem]
     let didSelectMovie = PublishSubject<SearchMovieEntity>()
+    let didSelectCriteria = PublishSubject<SearchCriteriaItem>()
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
-        
         
         movies.asObservable()
             .subscribe(onNext: { [weak self] (_) in
@@ -36,11 +36,30 @@ final class MoviesSearchListViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         self.topSegmentedControl.removeAllSegments()
-        Movie.Category.allCases
-            .indexedForEach { [unowned self] (category, index) in
-                self.topSegmentedControl.insertSegment(withTitle: category.displayableName, at: index, animated: false)
+        criteriaItems
+            .indexedForEach { [unowned self] (criteriaItem, index) in
+                self.topSegmentedControl.insertSegment(withTitle: criteriaItem.title, at: index, animated: false)
             }
         self.topSegmentedControl.selectedSegmentIndex = 0
+        
+        self.topSegmentedControl.rx.controlEvent(.valueChanged)
+            .map { [unowned self] in
+                let selectedIndex = self.topSegmentedControl.selectedSegmentIndex
+                let selectedCriteriaItem = self.criteriaItems[selectedIndex]
+                return selectedCriteriaItem
+            }
+            .bind(to: didSelectCriteria)
+            .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Init -
+    init(criteriaItems: [SearchCriteriaItem]) {
+        self.criteriaItems = criteriaItems
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Setup -

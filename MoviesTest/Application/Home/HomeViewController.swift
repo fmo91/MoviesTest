@@ -53,6 +53,12 @@ final class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        searchListViewController.didSelectCriteria.asObservable()
+            .subscribe(onNext: { [unowned self] (item: SearchCriteriaItem) in
+                self.viewModel.selectedSearchCriteria.accept(item)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.searchResult
             .drive(searchListViewController.rx.movies)
             .disposed(by: disposeBag)
@@ -118,7 +124,8 @@ final class HomeViewController: BaseViewController {
     }
     
     private func addSearchListViewController() {
-        let _searchListViewController = MoviesSearchListViewController()
+        let criteriaItems = viewModel.searchCriteriaItems
+        let _searchListViewController = MoviesSearchListViewController(criteriaItems: criteriaItems)
         _searchListViewController.embed(in: self, onView: searchResultsContainer)
         searchListViewController = _searchListViewController
     }

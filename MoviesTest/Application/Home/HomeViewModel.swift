@@ -15,7 +15,9 @@ protocol HomeViewModelType {
     var searchResult: Driver<[SearchMovieEntity]> { get }
     func source(for category: Movie.Category) -> Driver<[Movie]>
     
+    var selectedSearchCriteria: BehaviorRelay<SearchCriteriaItem?> { get }
     var didReachedEndForCategory: PublishSubject<Movie.Category> { get }
+    var searchCriteriaItems: [SearchCriteriaItem] { get }
 }
 
 final class HomeViewModel: HomeViewModelType {
@@ -27,6 +29,8 @@ final class HomeViewModel: HomeViewModelType {
     let searchText = PublishSubject<String>()
     let searchResult: Driver<[SearchMovieEntity]>
     let didReachedEndForCategory = PublishSubject<Movie.Category>()
+    let selectedSearchCriteria = BehaviorRelay<SearchCriteriaItem?>(value: nil)
+    lazy var searchCriteriaItems: [SearchCriteriaItem] = SearchCriteriaItem.allCases
     
     private var nextPage = Movie.Category.allCases
         .reduce([Movie.Category: BehaviorRelay<Int>]()) { (dictionary, category) in
@@ -39,12 +43,25 @@ final class HomeViewModel: HomeViewModelType {
     init(source: MoviesSource) {
         self.source = source
         
-        searchResult = searchText.asObservable()
+        let searchTextObservable = self.searchText.asObservable()
+        let searchCriteriaObservable = self.selectedSearchCriteria.asObservable()
+        
+        searchResult = Observable<(String, SearchCriteriaItem?)>
+            .combineLatest(
+                searchTextObservable,
+                searchCriteriaObservable,
+                resultSelector: { text, criteria in (text, criteria) }
+            )
             .throttle(0.5, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .flatMap { text in source.searchMovies(text: text) }
+            .flatMap { (bundle: (String, SearchCriteriaItem?)) -> Observable<[Movie]> in
+                let (text, criteria) = bundle
+                return source.searchMovies(
+                    text: text,
+                    criteria: criteria ?? .all
+                )
+            }
             .map { movies in movies.toSearchMovieEntities }
-            .asDriver(onErrorJustReturn: [])
+            .asDriver(onErrorJustReturn: [SearchMovieEntity]())
         
         didReachedEndForCategory.asObservable()
             .subscribe(onNext: { [unowned self] (category) in
@@ -54,6 +71,8 @@ final class HomeViewModel: HomeViewModelType {
                 nextPageForCategory.accept(nextPageForCategory.value + 1)
             })
             .disposed(by: disposeBag)
+        
+        selectedSearchCriteria.accept(searchCriteriaItems.first)
     }
     
     func source(for category: Movie.Category) -> Driver<[Movie]> {

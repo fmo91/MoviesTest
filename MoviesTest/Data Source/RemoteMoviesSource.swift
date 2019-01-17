@@ -10,7 +10,11 @@ import Foundation
 import RxSwift
 
 struct RemoteMoviesSource: MoviesSource {
-    func searchMovies(text: String) -> Observable<[Movie]> {
+    func searchMovies(text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
+        guard criteria == .all else {
+            return .just([])
+        }
+        
         if text.isEmpty {
             return .just([])
         }

@@ -13,14 +13,14 @@ struct CacheableMoviesSource: MoviesSource {
     private let localSource = LocalMoviesSource()
     private let remoteSource = RemoteMoviesSource()
     
-    func searchMovies(text: String) -> Observable<[Movie]> {
+    func searchMovies(text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
         if InternetConnection.isWorking {
-            return remoteSource.searchMovies(text: text)
+            return remoteSource.searchMovies(text: text, criteria: criteria)
                 .do(onNext: { (movies: [Movie]) in
                     self.localSource.saveMovies(movies, forSearch: text)
                 })
         } else {
-            return localSource.searchMovies(text: text)
+            return localSource.searchMovies(text: text, criteria: criteria)
         }
     }
     

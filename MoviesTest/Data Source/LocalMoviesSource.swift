@@ -11,7 +11,7 @@ import CoreData
 import RxSwift
 
 struct LocalMoviesSource: MoviesSource {
-    func searchMovies(text: String) -> Observable<[Movie]> {
+    func searchMovies(text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
         let fetch = NSFetchRequest<TextSearch>(entityName: "TextSearch")
         fetch.predicate = NSPredicate(format: "text = %@", text)
         let searchesThatMatch = try? context.fetch(fetch)
