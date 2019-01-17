@@ -12,6 +12,13 @@ import RxSwift
 
 struct LocalMoviesSource: MoviesSource {
     func searchMovies(text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
+        switch criteria {
+        case .all: return performTextSearch(for: text)
+        default: return performCategorySearch(for: text, criteria: criteria)
+        }
+    }
+    
+    private func performTextSearch(for text: String) -> Observable<[Movie]> {
         let fetch = NSFetchRequest<TextSearch>(entityName: "TextSearch")
         fetch.predicate = NSPredicate(format: "text = %@", text)
         let searchesThatMatch = try? context.fetch(fetch)
@@ -19,6 +26,23 @@ struct LocalMoviesSource: MoviesSource {
             return .just(localMovies.compactMap(Movie.fromLocalMovie))
         } else {
             return .just([])
+        }
+    }
+    
+    private func performCategorySearch(for text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
+        guard let category = criteriaToCategory(criteria) else {
+            return .just([])
+        }
+        return getMovies(category: category, page: nil)
+            .map { $0.filter { $0.title.contains(text) } }
+    }
+    
+    private func criteriaToCategory(_ criteria: SearchCriteriaItem) -> Movie.Category? {
+        switch criteria {
+        case .all: return nil
+        case .popular: return .popular
+        case .topRated: return .topRated
+        case .upcoming: return .upcoming
         }
     }
     
@@ -53,22 +77,30 @@ struct LocalMoviesSource: MoviesSource {
         }
     }
     
-    func saveMovies(_ movies: [Movie], forCategory category: Movie.Category) {
+    func saveMovies(_ movies: [Movie], page: Int, forCategory category: Movie.Category) {
         let fetch = NSFetchRequest<CategorySearch>(entityName: "CategorySearch")
         fetch.predicate = NSPredicate(format: "category = %@", category.rawValue)
         let searchesThatMatch = try? context.fetch(fetch)
-        if let results = searchesThatMatch {
-            for result in results {
-                context.delete(result)
+        
+        guard let results = searchesThatMatch else {
+            return
+        }
+        
+        let localMovies = movies.map { $0.saveIfNotExistInDatabase(for: context) }
+        
+        if results.isEmpty {
+            let entity = NSEntityDescription.entity(forEntityName: "CategorySearch", in: context)
+            let search = NSManagedObject(entity: entity!, insertInto: context) as! CategorySearch
+            search.setValue(category.rawValue, forKey: "category")
+            localMovies.forEach { (localMovie) in
+                search.addToMovies(localMovie)
+            }
+        } else if let firstResult = results.first {
+            localMovies.forEach { (localMovie) in
+                firstResult.addToMovies(localMovie)
             }
         }
-        let localMovies = movies.map { $0.saveIfNotExistInDatabase(for: context) }
-        let entity = NSEntityDescription.entity(forEntityName: "CategorySearch", in: context)
-        let search = NSManagedObject(entity: entity!, insertInto: context) as! CategorySearch
-        search.setValue(category.rawValue, forKey: "category")
-        localMovies.forEach { (localMovie) in
-            search.addToMovies(localMovie)
-        }
+        
         context.saveIfHasChanged()
     }
 }

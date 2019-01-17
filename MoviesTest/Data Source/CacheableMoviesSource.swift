@@ -14,6 +14,13 @@ struct CacheableMoviesSource: MoviesSource {
     private let remoteSource = RemoteMoviesSource()
     
     func searchMovies(text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
+        switch criteria {
+        case .all: return performTextSearch(for: text, criteria: criteria)
+        default: return localSource.searchMovies(text: text, criteria: criteria)
+        }
+    }
+    
+    private func performTextSearch(for text: String, criteria: SearchCriteriaItem) -> Observable<[Movie]> {
         if InternetConnection.isWorking {
             return remoteSource.searchMovies(text: text, criteria: criteria)
                 .do(onNext: { (movies: [Movie]) in
@@ -28,7 +35,7 @@ struct CacheableMoviesSource: MoviesSource {
         if InternetConnection.isWorking {
             return remoteSource.getMovies(category: category, page: page)
                 .do(onNext: { (movies: [Movie]) in
-                    self.localSource.saveMovies(movies, forCategory: category)
+                    self.localSource.saveMovies(movies, page: page ?? 1, forCategory: category)
                 })
         } else {
             return localSource.getMovies(category: category, page: page)
