@@ -16,7 +16,7 @@ final class MoviesSearchListViewControllerTests: XCTestCase {
     var disposeBag: DisposeBag!
 
     override func setUp() {
-        viewController = MoviesSearchListViewController()
+        viewController = MoviesSearchListViewController(criteriaItems: SearchCriteriaItem.allCases)
         disposeBag = DisposeBag()
         _ = viewController.view
     }

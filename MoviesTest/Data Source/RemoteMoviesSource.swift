@@ -24,7 +24,7 @@ struct RemoteMoviesSource: MoviesSource {
             .map { $0.results }
     }
     func getMovies(category: Movie.Category, page: Int?) -> Observable<[Movie]> {
-        return GetMoviesRequest(fetchFilter: category, page: page).rx_dispatch()
+        return category.toRequestType(page: page).rx_dispatch()
             .asObservable()
             .map { $0.results }
     }
@@ -32,5 +32,26 @@ struct RemoteMoviesSource: MoviesSource {
         return GetVideosRequest(movieId: movieId).rx_dispatch()
             .asObservable()
             .map { $0.results }
+    }
+}
+
+// Type-Erased RequestType
+struct AnyRequestType<T: Codable>: RequestType {
+    let data: RequestData
+    
+    typealias ResponseType = T
+    
+    init<U: RequestType>(_ requestType: U) where U.ResponseType == ResponseType {
+        data = requestType.data
+    }
+}
+
+private extension Movie.Category {
+    func toRequestType(page: Int?) -> AnyRequestType<PagedMoviesResponse> {
+        switch self {
+        case .popular: return AnyRequestType(GetPopularMoviesRequest(page: page))
+        case .topRated: return AnyRequestType(GetTopRatedMoviesRequest(page: page))
+        case .upcoming: return AnyRequestType(GetUpcomingMoviesRequest(page: page))
+        }
     }
 }

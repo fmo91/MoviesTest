@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		72CE259EE9947BE37BE18D76 /* Pods_MoviesTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD45B2BD790F2D892973D4A /* Pods_MoviesTest.framework */; };
 		755E2869CC5F300C55416C23 /* Pods_MoviesTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C037FBC3B278239EDED87FDD /* Pods_MoviesTestTests.framework */; };
+		ED1EC18421F0CBAA00C1EA08 /* GetPopularMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EC18321F0CBAA00C1EA08 /* GetPopularMoviesRequest.swift */; };
+		ED1EC18621F0CBB800C1EA08 /* GetTopRatedMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EC18521F0CBB800C1EA08 /* GetTopRatedMoviesRequest.swift */; };
+		ED1EC18821F0CBC600C1EA08 /* GetUpcomingMoviesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EC18721F0CBC600C1EA08 /* GetUpcomingMoviesRequest.swift */; };
 		ED27BD7A21F0250D0089F688 /* SearchCriteriaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27BD7921F0250D0089F688 /* SearchCriteriaItem.swift */; };
 		ED3B97C621E92BCA0043F788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3B97C521E92BCA0043F788 /* AppDelegate.swift */; };
 		ED3B97CE21E92BCA0043F788 /* MoviesTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED3B97CC21E92BCA0043F788 /* MoviesTest.xcdatamodeld */; };
@@ -109,6 +112,9 @@
 		4DA4C9764F7321A20799D99B /* Pods-MoviesTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesTest/Pods-MoviesTest.release.xcconfig"; sourceTree = "<group>"; };
 		C037FBC3B278239EDED87FDD /* Pods_MoviesTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41206FEBFD9AD0E367EE514 /* Pods-MoviesTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesTestTests/Pods-MoviesTestTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED1EC18321F0CBAA00C1EA08 /* GetPopularMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularMoviesRequest.swift; sourceTree = "<group>"; };
+		ED1EC18521F0CBB800C1EA08 /* GetTopRatedMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTopRatedMoviesRequest.swift; sourceTree = "<group>"; };
+		ED1EC18721F0CBC600C1EA08 /* GetUpcomingMoviesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUpcomingMoviesRequest.swift; sourceTree = "<group>"; };
 		ED27BD7921F0250D0089F688 /* SearchCriteriaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteriaItem.swift; sourceTree = "<group>"; };
 		ED3B97C221E92BCA0043F788 /* MoviesTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3B97C521E92BCA0043F788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -608,6 +614,9 @@
 				EDF634EA21EBE81D00295D4C /* GetMoviesRequest.swift */,
 				EDF634F221EBF43800295D4C /* SearchMoviesRequest.swift */,
 				ED7FFCEA21EED07900E96977 /* GetVideosRequest.swift */,
+				ED1EC18321F0CBAA00C1EA08 /* GetPopularMoviesRequest.swift */,
+				ED1EC18521F0CBB800C1EA08 /* GetTopRatedMoviesRequest.swift */,
+				ED1EC18721F0CBC600C1EA08 /* GetUpcomingMoviesRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -853,6 +862,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED1EC18421F0CBAA00C1EA08 /* GetPopularMoviesRequest.swift in Sources */,
 				EDF634DF21EBB2B000295D4C /* UIView+Convenience.swift in Sources */,
 				ED3B9FDA21EEAB15006A7AE5 /* CardOpeningAnimator.swift in Sources */,
 				EDF6349721EA96C400295D4C /* MoviesSource.swift in Sources */,
@@ -870,6 +880,7 @@
 				EDF6349B21EA973900295D4C /* RemoteMoviesSource.swift in Sources */,
 				EDF634DB21EB6A3800295D4C /* UIColor+Custom.swift in Sources */,
 				EDF634B921EA9F1500295D4C /* HomeViewController.swift in Sources */,
+				ED1EC18621F0CBB800C1EA08 /* GetTopRatedMoviesRequest.swift in Sources */,
 				EDE04C8821EE5BBA00A39C41 /* UIFont+Custom.swift in Sources */,
 				EDF634C421EAA8BD00295D4C /* HomeBuilder.swift in Sources */,
 				EDF634D921EB679A00295D4C /* BottomLinedSegmentedControl.swift in Sources */,
@@ -894,6 +905,7 @@
 				EDF634E121EBCA4C00295D4C /* ReusableViewEnum.swift in Sources */,
 				ED7FFCE421EECB3800E96977 /* MovieDetailVideosTableViewCell.swift in Sources */,
 				EDF634C821EAA8DF00295D4C /* MoviesSearchListViewController.swift in Sources */,
+				ED1EC18821F0CBC600C1EA08 /* GetUpcomingMoviesRequest.swift in Sources */,
 				EDF634BC21EA9F2000295D4C /* HomeViewModel.swift in Sources */,
 				EDF634F121EBEE3400295D4C /* PagedMoviesResponse.swift in Sources */,
 				EDF634C221EAA8B100295D4C /* MovieDetailBuilder.swift in Sources */,
