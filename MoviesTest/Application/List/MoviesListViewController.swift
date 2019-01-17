@@ -7,20 +7,40 @@
 //
 
 import UIKit
+import BouncyLayout
 import RxSwift
 import RxCocoa
 
 final class MoviesListViewController: BaseViewController {
+    
+    // MARK: - Inner Types -
+    private enum CollectionViewStyle {
+        case grid, list
+        
+        var numberOfColumns: Int {
+            switch self {
+            case .grid: return 2
+            case .list: return 1
+            }
+        }
+        
+        mutating func `switch`() {
+            switch self {
+            case .grid: self = .list
+            case .list: self = .grid
+            }
+        }
+    }
     
     // MARK: - Views -
     @IBOutlet private weak var collectionView: UICollectionView!
     
     // MARK: - Attributes -
     private let viewModel: MoviesListViewModel
-    
     let didReachedEnd = PublishSubject<Void>()
-    
     let cardTransitionAnimator = CardTransitionAnimator()
+    
+    private var collectionViewStyle: CollectionViewStyle = .list
 
     // MARK: - Life Cycle -
     override func viewDidLoad() {
@@ -33,6 +53,8 @@ final class MoviesListViewController: BaseViewController {
                 self.collectionView.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        setupNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,7 +79,34 @@ final class MoviesListViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
+    private func setupNavigationBar() {
+        let buttonTitle: String = {
+            switch collectionViewStyle {
+            case .list: return "Show Grid"
+            case .grid: return "Show List"
+            }
+        }()
+        let layoutChangeBarButtonItem = UIBarButtonItem(title: buttonTitle, style: .done, target: self, action: #selector(layoutChangeBarButtonItemPressed))
+        parent?.navigationItem.rightBarButtonItem = layoutChangeBarButtonItem
+    }
+    
+    // MARK: - Actions -
+    @objc private func layoutChangeBarButtonItemPressed() {
+        parent?.children.forEach({ (controller) in
+            guard let listController = controller as? MoviesListViewController else {
+                return
+            }
+            
+            listController.collectionViewStyle.switch()
+            listController.collectionView.setCollectionViewLayout(BouncyLayout(), animated: true)
+            listController.collectionView.collectionViewLayout.invalidateLayout()
+            listController.collectionView.visibleCells.forEach { (cell) in
+                (cell as? MovieCollectionViewCell)?.configureBorders()
+            }
+        })
+        setupNavigationBar()
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource -
@@ -72,18 +121,8 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = MovieCollectionViewCell.dequeue(from: collectionView, for: indexPath)
-        cell.contentView.layer.cornerRadius = 12.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = true
-        
-        cell.layer.shadowColor = UIColor.black.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 0.5
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         cell.configure(with: viewModel.movies.value[indexPath.row])
+        cell.configureBorders()
         return cell
     }
     
@@ -132,7 +171,8 @@ extension MoviesListViewController: UICollectionViewDelegate, UICollectionViewDa
 extension MoviesListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let layoutInsets = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
-        let width: CGFloat = collectionView.frame.width - layoutInsets.left - layoutInsets.right
+        let interitemSpacing = self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: indexPath.section)
+        let width: CGFloat = (collectionView.frame.width - layoutInsets.left - layoutInsets.right - (CGFloat(collectionViewStyle.numberOfColumns) - 1) * interitemSpacing) / CGFloat(collectionViewStyle.numberOfColumns)
         
         return CGSize(
             width   : width,
@@ -154,7 +194,7 @@ extension MoviesListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .leastNonzeroMagnitude
+        return 10.0
     }
 }
 

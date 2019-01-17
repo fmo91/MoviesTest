@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesSearchListViewController" customModule="MoviesTest" customModuleProvider="target">
             <connections>
                 <outlet property="tableView" destination="BLn-FV-Ixr" id="Pqp-jI-9Jz"/>
+                <outlet property="topSegmentedControl" destination="Zod-PD-Mfi" id="Cti-cW-tUp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,20 +22,41 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Oy-iE-uHU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Zod-PD-Mfi">
+                            <rect key="frame" x="127" y="6" width="121" height="29"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Zod-PD-Mfi" firstAttribute="centerY" secondItem="5Oy-iE-uHU" secondAttribute="centerY" id="L51-Bk-Dj7"/>
+                        <constraint firstAttribute="height" constant="40" id="ZVx-WH-YnO"/>
+                        <constraint firstItem="Zod-PD-Mfi" firstAttribute="centerX" secondItem="5Oy-iE-uHU" secondAttribute="centerX" id="h6w-ky-RQU"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLn-FV-Ixr">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="BLn-FV-Ixr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EB9-YD-0a9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Oy-iE-uHU" secondAttribute="trailing" id="Dbq-Vu-Rnj"/>
+                <constraint firstItem="5Oy-iE-uHU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YgE-qI-Rr7"/>
+                <constraint firstItem="BLn-FV-Ixr" firstAttribute="top" secondItem="5Oy-iE-uHU" secondAttribute="bottom" id="mhF-d2-5X8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BLn-FV-Ixr" secondAttribute="bottom" id="ofL-U4-fFL"/>
+                <constraint firstItem="5Oy-iE-uHU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xCP-Yt-V4L"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BLn-FV-Ixr" secondAttribute="trailing" id="xe7-j7-I4Z"/>
                 <constraint firstItem="BLn-FV-Ixr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zTZ-Hk-0j8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="138.40000000000001" y="153.37331334332833"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
 </document>

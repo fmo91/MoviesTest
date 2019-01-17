@@ -14,6 +14,7 @@ final class MoviesSearchListViewController: BaseViewController {
     
     // MARK: - Views -
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var topSegmentedControl: UISegmentedControl!
     
     // MARK: - Attributes -
     var movies = BehaviorRelay<[SearchMovieEntity]>(value: [])
@@ -26,12 +27,20 @@ final class MoviesSearchListViewController: BaseViewController {
         
         self.setupTableView()
         
+        
         movies.asObservable()
             .subscribe(onNext: { [weak self] (_) in
                 let section = IndexSet.init(integer: 0)
                 self?.tableView.reloadSections(section, with: .automatic)
             })
             .disposed(by: disposeBag)
+        
+        self.topSegmentedControl.removeAllSegments()
+        Movie.Category.allCases
+            .indexedForEach { [unowned self] (category, index) in
+                self.topSegmentedControl.insertSegment(withTitle: category.displayableName, at: index, animated: false)
+            }
+        self.topSegmentedControl.selectedSegmentIndex = 0
     }
     
     // MARK: - Setup -

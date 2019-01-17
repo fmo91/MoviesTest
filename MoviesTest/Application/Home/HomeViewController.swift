@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class HomeViewController: BaseViewController {
     
@@ -56,11 +57,14 @@ final class HomeViewController: BaseViewController {
             .drive(searchListViewController.rx.movies)
             .disposed(by: disposeBag)
         
-        viewModel.searchResult
-            .map { $0.isEmpty }
-            .drive (onNext: { [unowned self] emptyResults in
-                self.searchResultsContainer.isHidden = emptyResults
-                self.mainContainer.isHidden = !emptyResults
+        Observable<Bool>
+            .merge([
+                searchController.searchBar.rx.delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarTextDidBeginEditing(_:))).map { _ in true },
+                searchController.searchBar.rx.cancelButtonClicked.asObservable().map { false },
+            ])
+            .subscribe(onNext: { [unowned self] (shouldShowSearchResults: Bool) in
+                self.searchResultsContainer.isHidden = !shouldShowSearchResults
+                self.mainContainer.isHidden = shouldShowSearchResults
             })
             .disposed(by: disposeBag)
         
