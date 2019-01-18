@@ -17,6 +17,26 @@ struct Video: Codable {
     let site: String?
     let size: Int?
     let type: String?
+    
+    init(
+        id: String? = nil,
+        iso639: String? = nil,
+        iso3166: String? = nil,
+        key: String? = nil,
+        name: String? = nil,
+        site: String? = nil,
+        size: Int? = nil,
+        type: String? = nil
+    ) {
+        self.id = id
+        self.iso639 = iso639
+        self.iso3166 = iso3166
+        self.key = key
+        self.name = name
+        self.site = site
+        self.size = size
+        self.type = type
+    }
  
     enum CodingKeys: String, CodingKey {
         case id = "id"

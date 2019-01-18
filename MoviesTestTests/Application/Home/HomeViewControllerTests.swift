@@ -11,13 +11,5 @@ import RxSwift
 @testable import MoviesTest
 
 final class HomeViewControllerTests: XCTestCase {
-
-    override func setUp() {
-        
-    }
-    
-    override func tearDown() {
-        
-    }
     
 }

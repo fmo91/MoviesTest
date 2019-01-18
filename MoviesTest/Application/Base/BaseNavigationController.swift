@@ -45,7 +45,6 @@ extension UIViewController {
             self.navigationController?.view.backgroundColor = .clear
             self.edgesForExtendedLayout = UIRectEdge.top
             
-            UIApplication.shared.statusBarStyle = .lightContent
             navigationController?.setNeedsStatusBarAppearanceUpdate()
         } else {
             self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
@@ -53,7 +52,6 @@ extension UIViewController {
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.view.backgroundColor = .white
             
-            UIApplication.shared.statusBarStyle = .default
             navigationController?.setNeedsStatusBarAppearanceUpdate()
         }
     }

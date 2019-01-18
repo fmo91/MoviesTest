@@ -12,35 +12,25 @@ import RxCocoa
 @testable import MoviesTest
 
 final class HomeViewModelMock: HomeViewModelType {
-    
-    let searchText = PublishSubject<String>()
+    let searchText: PublishSubject<String> = .init()
+    let selectedSearchCriteria: BehaviorRelay<SearchCriteriaItem?> = .init(value: nil)
+    let didReachedEndForCategory: PublishSubject<Movie.Category> = .init()
     
     let searchResult: Driver<[SearchMovieEntity]>
-    let popularMovies: Driver<[Movie]>
-    let topRatedMovies: Driver<[Movie]>
-    let upcomingMovies: Driver<[Movie]>
+    let searchCriteriaItems: [SearchCriteriaItem]
     
-    let didReachedEndForCategory = PublishSubject<Movie.Category>()
-    
-    static var empty: HomeViewModelMock {
-        return HomeViewModelMock(
-            searchResult: .just([]),
-            popularMovies: .just([]),
-            topRatedMovies: .just([]),
-            upcomingMovies: .just([])
-        )
+    private let _source: (Movie.Category) -> Driver<[Movie]>
+    func source(for category: Movie.Category) -> Driver<Array<Movie>> {
+        return _source(category)
     }
     
     init(
         searchResult: Driver<[SearchMovieEntity]>,
-        popularMovies: Driver<[Movie]>,
-        topRatedMovies: Driver<[Movie]>,
-        upcomingMovies: Driver<[Movie]>
+        searchCriteriaItems: [SearchCriteriaItem],
+        source: @escaping (Movie.Category) -> Driver<[Movie]>
     ) {
         self.searchResult = searchResult
-        self.popularMovies = popularMovies
-        self.topRatedMovies = topRatedMovies
-        self.upcomingMovies = upcomingMovies
+        self.searchCriteriaItems = searchCriteriaItems
+        self._source = source
     }
-    
 }

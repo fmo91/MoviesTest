@@ -18,7 +18,7 @@ final class MovieDetailViewController: BaseViewController {
     @IBOutlet weak var topImageViewTopConstraint: NSLayoutConstraint!
     
     // MARK: - Attributes -
-    private let viewModel: MovieDetailViewModel
+    private let viewModel: MovieDetailViewModelType
     private let animator: CardTransitionAnimator?
     static let topImageViewInitialHeight: CGFloat = 270.0
     private var interactionController: UIPercentDrivenInteractiveTransition?
@@ -69,7 +69,7 @@ final class MovieDetailViewController: BaseViewController {
     }
     
     // MARK: - Init -
-    init(viewModel: MovieDetailViewModel, animator: CardTransitionAnimator?) {
+    init(viewModel: MovieDetailViewModelType, animator: CardTransitionAnimator?) {
         self.viewModel = viewModel
         self.animator = animator
         super.init()
@@ -111,7 +111,7 @@ final class MovieDetailViewController: BaseViewController {
 
 }
 
-private enum Section: Int, ReusableViewEnum {
+enum MovieDetailSection: Int, ReusableViewEnum {
     case  topImageView = 0
         , topInfo
         , info
@@ -122,11 +122,11 @@ private enum Section: Int, ReusableViewEnum {
 // MARK: - UITableViewDelegate, UITableViewDataSource -
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.all.count
+        return MovieDetailSection.all.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Section.build(with: section) {
+        switch MovieDetailSection.build(with: section) {
         case .topImageView:
             return 1
         case .topInfo:
@@ -141,7 +141,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch Section.build(with: indexPath.section) {
+        switch MovieDetailSection.build(with: indexPath.section) {
         case .topImageView:
             let cell = UITableViewCell()
             cell.selectionStyle = .none
@@ -167,7 +167,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch Section.build(with: indexPath.section) {
+        switch MovieDetailSection.build(with: indexPath.section) {
         case .topImageView:
             return MovieDetailViewController.topImageViewInitialHeight - navigationBarHeight - statusBarHeight
         case .topInfo:

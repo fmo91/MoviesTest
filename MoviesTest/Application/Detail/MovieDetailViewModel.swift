@@ -9,7 +9,15 @@
 import RxSwift
 import RxCocoa
 
-final class MovieDetailViewModel {
+protocol MovieDetailViewModelType {
+    var movieImagePath: String { get }
+    var movieTitle: String { get }
+    var movieSubtitle: String { get }
+    var infoSections: [MovieDetailInfoSection] { get }
+    var videos: BehaviorRelay<[String]> { get }
+}
+
+final class MovieDetailViewModel: MovieDetailViewModelType {
     
     // MARK: - Attributes -
     private let disposeBag = DisposeBag()
@@ -45,7 +53,6 @@ final class MovieDetailViewModel {
             .map { videos in
                 videos.compactMap { video in
                     video.key
-//                    video.id
                 }
             }
             .catchErrorJustReturn([])

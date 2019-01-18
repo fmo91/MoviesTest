@@ -7,10 +7,7 @@ target 'MoviesTest' do
     pod 'BouncyLayout'
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
-    pod 'IQKeyboardManagerSwift'
     pod 'Kingfisher'
-    pod 'SVProgressHUD'
-    pod 'DZNEmptyDataSet'
     pod 'DequeuableRegistrable', :git => 'https://github.com/fmo91/DequeuableRegistrable/'
     pod 'youtube-ios-player-helper', '~> 0.1.4'
 

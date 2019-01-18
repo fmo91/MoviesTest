@@ -57,19 +57,6 @@ struct LocalMoviesSource: MoviesSource {
     
     func saveMovies(_ movies: [Movie], forSearch text: String) {
         movies.forEach { $0.saveIfNotExistInDatabase(for: context) }
-//        let fetch = NSFetchRequest<TextSearch>(entityName: "TextSearch")
-//        fetch.predicate = NSPredicate(format: "text = %@", text)
-//        let searchesThatMatch = try? context.fetch(fetch)
-//        if let results = searchesThatMatch, results.isEmpty {
-//            let localMovies = movies.map { $0.saveIfNotExistInDatabase(for: context) }
-//            let entity = NSEntityDescription.entity(forEntityName: "TextSearch", in: context)
-//            let search = NSManagedObject(entity: entity!, insertInto: context) as! TextSearch
-//            search.setValue(text, forKey: "text")
-//            localMovies.forEach { (localMovie) in
-//                search.addToMovies(localMovie)
-//            }
-//            context.saveIfHasChanged()
-//        }
     }
     
     func saveMovies(_ movies: [Movie], page: Int, forCategory category: Movie.Category) {
