@@ -33,10 +33,10 @@ final class MoviesListViewController: BaseViewController {
     }
     
     // MARK: - Views -
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Attributes -
-    private let viewModel: MoviesListViewModel
+    private let viewModel: MoviesListViewModelType
     let didReachedEnd = PublishSubject<Void>()
     let cardTransitionAnimator = CardTransitionAnimator()
     
@@ -63,7 +63,7 @@ final class MoviesListViewController: BaseViewController {
     }
     
     // MARK: - Init -
-    init(viewModel: MoviesListViewModel) {
+    init(viewModel: MoviesListViewModelType) {
         self.viewModel = viewModel
         super.init()
     }

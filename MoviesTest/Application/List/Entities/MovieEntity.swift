@@ -9,7 +9,7 @@
 import Foundation
 
 struct MovieEntity {
-    let movie: Movie
+    let movie: Movie!
     
     let imagePath: String?
     let title: String

@@ -10,22 +10,6 @@ import Foundation
 import RxSwift
 @testable import MoviesTest
 
-enum Result<T> {
-    case success(T)
-    case failure(Error)
-}
-
-private extension Observable {
-    static func from<T>(_ result: Result<T>) -> Observable<T> {
-        switch result {
-        case .success(let value):
-            return .just(value)
-        case .failure(let error):
-            return .error(error)
-        }
-    }
-}
-
 final class MockMoviesSource: MoviesSource {
     var searchMoviesResult: Result<[Movie]>!
     var getMoviesResult: Result<[Movie]>!

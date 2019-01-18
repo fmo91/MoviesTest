@@ -96,6 +96,8 @@
 		EDFA7B7321F14C50004EC3E1 /* MovieDetailViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA7B7221F14C50004EC3E1 /* MovieDetailViewModelMock.swift */; };
 		EDFA7B7521F160E1004EC3E1 /* MockNetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA7B7421F160E1004EC3E1 /* MockNetworkDispatcher.swift */; };
 		EDFA7B8321F16386004EC3E1 /* MockMoviesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA7B8221F16386004EC3E1 /* MockMoviesSource.swift */; };
+		EDFA7B8521F17067004EC3E1 /* MoviesListViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA7B8421F17067004EC3E1 /* MoviesListViewModelMock.swift */; };
+		EDFA7B8721F170AA004EC3E1 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFA7B8621F170AA004EC3E1 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +207,8 @@
 		EDFA7B7221F14C50004EC3E1 /* MovieDetailViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelMock.swift; sourceTree = "<group>"; };
 		EDFA7B7421F160E1004EC3E1 /* MockNetworkDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkDispatcher.swift; sourceTree = "<group>"; };
 		EDFA7B8221F16386004EC3E1 /* MockMoviesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesSource.swift; sourceTree = "<group>"; };
+		EDFA7B8421F17067004EC3E1 /* MoviesListViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModelMock.swift; sourceTree = "<group>"; };
+		EDFA7B8621F170AA004EC3E1 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F3688D5C6FC7EDA71E8DACAD /* Pods-MoviesTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoviesTest/Pods-MoviesTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -370,6 +374,7 @@
 			children = (
 				EDE04C6421ED8E8A00A39C41 /* MoviesListViewControllerTests.swift */,
 				EDE04C6621ED8E9E00A39C41 /* MoviesListViewModelTests.swift */,
+				EDFA7B8421F17067004EC3E1 /* MoviesListViewModelMock.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			children = (
 				EDE04C5A21ED88F600A39C41 /* SearchMovieEntity+Convenience.swift */,
 				EDFA7B7421F160E1004EC3E1 /* MockNetworkDispatcher.swift */,
+				EDFA7B8621F170AA004EC3E1 /* Result.swift */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -922,11 +928,13 @@
 				EDE04C6D21ED8FD100A39C41 /* HomeViewModelMock.swift in Sources */,
 				EDE04C6521ED8E8A00A39C41 /* MoviesListViewControllerTests.swift in Sources */,
 				EDE04C6B21ED8ED200A39C41 /* MovieDetailViewModelTests.swift in Sources */,
+				EDFA7B8721F170AA004EC3E1 /* Result.swift in Sources */,
 				EDE04C5B21ED88F600A39C41 /* SearchMovieEntity+Convenience.swift in Sources */,
 				EDE04C6921ED8EBD00A39C41 /* MovieDetailViewControllerTests.swift in Sources */,
 				EDE04C6721ED8E9E00A39C41 /* MoviesListViewModelTests.swift in Sources */,
 				EDE04C5821ED87E600A39C41 /* MoviesSearchListViewControllerTests.swift in Sources */,
 				EDE04C6121ED8E4800A39C41 /* HomeViewModelTests.swift in Sources */,
+				EDFA7B8521F17067004EC3E1 /* MoviesListViewModelMock.swift in Sources */,
 				EDFA7B7521F160E1004EC3E1 /* MockNetworkDispatcher.swift in Sources */,
 				EDFA7B7321F14C50004EC3E1 /* MovieDetailViewModelMock.swift in Sources */,
 				EDFA7B8321F16386004EC3E1 /* MockMoviesSource.swift in Sources */,

@@ -9,7 +9,11 @@
 import RxSwift
 import RxCocoa
 
-final class MoviesListViewModel {
+protocol MoviesListViewModelType {
+    var movies: BehaviorRelay<[MovieEntity]> { get }
+}
+
+final class MoviesListViewModel: MoviesListViewModelType {
     
     // MARK: - Attributes -
     private let disposeBag = DisposeBag()
