@@ -41,7 +41,15 @@ La arquitectura de MoviesTest se basa en gran medida en el uso de Observable y l
 
 ## Soporte offline
 
-El soporte offline dentro de MoviesTest se realiza por medio de CoreData.
+El soporte offline dentro de MoviesTest se realiza por medio de CoreData. Se utiliza una clase llamada LocalMovie, en lugar de usar la clase del modelo llamada Movie, principalmente para dejar que ambas varíen en forma independiente.
+
+Para poder realizar en modo transparente a los módulos las consultas a las fuentes de datos (ya sea CoreData o la API), se creó un protocolo llamado **MoviesSource** con los métodos relacionados con la búsqueda y obtención de películas y videos.
+
+Luego, se crearon tres objetos que implementan **MoviesSource**:
+
+1. **LocalMoviesSource**: Realiza la búsqueda de películas a partir de la base de datos.
+2. **RemoteMoviesSource**: Realiza la búsqueda de películas a partir de llamadas HTTP a la API.
+3. **CacheableMoviesSource**: (podría haber encontrado un mejor nombre...), realiza llamadas a LocalMoviesSource y RemoteMoviesSource según el estado de conexión.
 
 ## Preguntas y respuestas
 
@@ -53,6 +61,8 @@ El propósito del principio de responsabilidad única es obtener un código limp
 
 Alta cohesión significa que dentro de la construcción se tiene todo lo necesario para la concreción del objetivo.
 Bajo acoplamiento significa que cada construcción es lo suficientemente independiente de las demás como para permitir que éstas varíen sin afectar a las otras.
+
+La otra gran ventaja del principio de responsabilidad única es que el desarrollo de pruebas unitarias se torna mucho más sencillo.
 
 > ¿Qué características tiene, en su opinión, un "buen" código, o código limpio?
 
