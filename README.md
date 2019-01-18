@@ -24,6 +24,25 @@ La arquitectura de **Movies Test** está basada en el patrón MVVM (Model-View-V
 - Existe una tercera fuente de datos, fuera de CoreData y la de Networking, que llamé **CacheableMoviesSource**, que realiza las búsquedas de películas, la obtención de películas por texto, etc. combinando las otras dos fuentes, y evaluando la conexión a internet para optar entre una y la otra.
 - **No se utilizó Storyboards**. Con el propósito de poder instanciar los ViewControllers con ViewModels, entre otros, se optó por la utilización de Xibs en algunos casos, y código Swift en otros.
 
+## Módulos de MoviesTest
+
+Los módulos presentes en MoviesTest son los siguientes:
+
+- **Home**: El módulo de Home es el módulo principal de la pantalla inicial, en la que se cuenta con selectores para las tres categorías (Popular, Top Rated y Upcoming) y una barra de búsqueda.
+- **Movies List**: El módulo de lista de películas es un módulo hijo del módulo Home. Su función es mostrar una lista/grilla de películas. Se comunica con el módulo de Home a través de la observación de Driver<Array<Movie>>, que el módulo de Home se encarga de mantener actualizado. Asimismo, avisa sobre el evento de "fin de lista alcanzado" por medio de la exposición de un PublishSubject<Void>. El módulo de Home tiene un módulo de lista de películas por cada categoría (es decir, tres).
+- **Search List**: El módulo de lista de búsqueda contiene una lista con películas que son el resultado de búsquedas en el módulo de Home. Al igual que el módulo de lista de películas, el módulo de lista de búsqueda  observa un Driver<Array<Movie>>, que el módulo de Home se encarga de mantener actualizado. Asimismo, expone un PublishSubject<SearchCriteriaItem> para avisar sobre un cambio en el criterio de búsqueda seleccionado y un PublishSubject<SearchMovieEntity> para avisar sobre la selección de una película.
+- **Movie Detail**: El módulo de detalle de película no depende de Home (no es hijo de este módulo), sino que es un módulo independiente, que muestra información sobre una película, videos, etc.
+
+Cada módulo cuenta con un view controller, un view model opcional (casi siempre se utiliza), un builder, y opcionalmente, una cantidad de structs que definen el modelo de datos que va a ser utilizado en alguna parte de la vista del módulo, llamadas **Entities**.
+
+## Observables
+
+La arquitectura de MoviesTest se basa en gran medida en el uso de Observable y los distintos Traits de RxCocoa, como ser BehaviorSubject, PublishSubject y Driver. El objetivo que se busca mediante la utilización de estas estructuras es lograr que la vista sea en la mayor medida de lo posible, una función pura del estado. Este estado se encapsula a su vez en un objeto llamado ViewModel, que expone un acceso controlado a su modificación.
+
+## Soporte offline
+
+El soporte offline dentro de MoviesTest se realiza por medio de CoreData.
+
 ## Preguntas y respuestas
 
 > ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito?
@@ -50,4 +69,12 @@ Como tal, el buen código debe ser una gran herramienta de comunicación, y por 
 El código limpio es claro, y autodocumentado, es mantenible y no sorprende al realizar modificaciones en el mismo.
 
 La arquitectura que rige al código limpio, también debe estar concebida bajo las mismas bases. Debe tener en cuenta a la gente y debe ser clara y promover la comunicación eficaz entre los participantes.
+
+Algunas consideraciones algo más prácticas sobre el código limpio en mi opinión:
+
+- El largo de las funciones en ningún caso debe exceder el tamaño de la pantalla.
+- Cualquier comportamiento en un objeto que varíe según el contexto de utilización, debe recibir por inyección (preferentemente en el constructor), las dependencias que definen el contexto.
+- Todo el código debe verse como si hubiese sido desarrollado por una sola persona, independientemente de la cantidad de desarrolladores que intervinieron en su construcción. Esto lleva a que las reglas de estilo definidas por el equipo deben ser respetadas.
+- Debe preferirse la composición a la herencia.
+- Debe haber preferencia por la inmutabilidad, las funciones puras y los cambios de estado predecibles.
 

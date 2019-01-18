@@ -293,9 +293,6 @@
 			children = (
 				EDE04C5921ED88E300A39C41 /* TestUtils */,
 				EDE04C4C21ED874500A39C41 /* Data Source */,
-				EDE04C4D21ED874D00A39C41 /* Model */,
-				EDE04C4E21ED875200A39C41 /* Components */,
-				EDE04C4F21ED876C00A39C41 /* Utils */,
 				EDE04C5021ED877300A39C41 /* Application */,
 				ED3B97DF21E92BCD0043F788 /* Info.plist */,
 			);
@@ -326,31 +323,9 @@
 			path = "Data Source";
 			sourceTree = "<group>";
 		};
-		EDE04C4D21ED874D00A39C41 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EDE04C4E21ED875200A39C41 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		EDE04C4F21ED876C00A39C41 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		EDE04C5021ED877300A39C41 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				EDE04C5521ED879A00A39C41 /* Base */,
 				EDE04C5421ED879700A39C41 /* Home */,
 				EDE04C5321ED879300A39C41 /* Search List */,
 				EDE04C5221ED878F00A39C41 /* List */,
@@ -395,13 +370,6 @@
 				EDE04C6C21ED8FD100A39C41 /* HomeViewModelMock.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		EDE04C5521ED879A00A39C41 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		EDE04C5921ED88E300A39C41 /* TestUtils */ = {
